@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="690" viewBox="0 0 1440 690" font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect width="1440" height="690" fill="#FFFFFF"/>
+  <g transform="translate(270,0)">
+  <!-- carotids & IJV -->
+  <path d="M250 660 L250 150" stroke="#C84B41" stroke-width="12" fill="none"/>
+  <path d="M650 660 L650 150" stroke="#C84B41" stroke-width="12" fill="none"/>
+  <path d="M250 150 L235 40" stroke="#C84B41" stroke-width="10" fill="none"/>
+  <path d="M250 150 L285 40" stroke="#C84B41" stroke-width="9" fill="none"/>
+  <path d="M650 150 L665 40" stroke="#C84B41" stroke-width="10" fill="none"/>
+  <path d="M650 150 L615 40" stroke="#C84B41" stroke-width="9" fill="none"/>
+  <path d="M215 660 L215 40" stroke="#3E6FB0" stroke-width="16" fill="none" opacity="0.9"/>
+  <path d="M685 660 L685 40" stroke="#3E6FB0" stroke-width="16" fill="none" opacity="0.9"/>
+  <!-- subclavian / thyrocervical -->
+  <path d="M250 640 L120 640" stroke="#C84B41" stroke-width="12" fill="none"/>
+  <path d="M650 640 L780 640" stroke="#C84B41" stroke-width="12" fill="none"/>
+  <!-- larynx -->
+  <path d="M395 30 L505 30 L530 70 L500 150 L400 150 L370 70 Z" fill="#E7EBF1" stroke="#8A97AA" stroke-width="3"/>
+  <path d="M450 32 L450 140" stroke="#8A97AA" stroke-width="2" stroke-dasharray="4 5"/>
+  <rect x="405" y="160" width="90" height="26" rx="10" fill="#E7EBF1" stroke="#8A97AA" stroke-width="3"/>
+  <!-- trachea -->
+  <rect x="410" y="194" width="80" height="470" rx="6" fill="#EEF1F5" stroke="#8A97AA" stroke-width="3"/>
+  <g stroke="#B9C2CF" stroke-width="3">
+    <line x1="412" y1="222" x2="488" y2="222"/><line x1="412" y1="252" x2="488" y2="252"/>
+    <line x1="412" y1="282" x2="488" y2="282"/><line x1="412" y1="312" x2="488" y2="312"/>
+    <line x1="412" y1="342" x2="488" y2="342"/><line x1="412" y1="372" x2="488" y2="372"/>
+    <line x1="412" y1="402" x2="488" y2="402"/><line x1="412" y1="432" x2="488" y2="432"/>
+    <line x1="412" y1="462" x2="488" y2="462"/><line x1="412" y1="492" x2="488" y2="492"/>
+    <line x1="412" y1="522" x2="488" y2="522"/><line x1="412" y1="552" x2="488" y2="552"/>
+    <line x1="412" y1="582" x2="488" y2="582"/><line x1="412" y1="612" x2="488" y2="612"/>
+  </g>
+  <!-- RLN (behind lobes, in tracheo-oesophageal groove) -->
+  <path d="M403 664 C 400 560, 400 400, 405 190" stroke="#E2A400" stroke-width="5" fill="none"/>
+  <path d="M497 664 C 500 560, 500 400, 495 190" stroke="#E2A400" stroke-width="5" fill="none"/>
+  <!-- inferior thyroid arteries -->
+  <path d="M170 640 C 165 560, 200 470, 330 440 C 350 436, 365 430, 372 420" stroke="#C84B41" stroke-width="7" fill="none"/>
+  <path d="M730 640 C 735 560, 700 470, 570 440 C 550 436, 535 430, 528 420" stroke="#C84B41" stroke-width="7" fill="none"/>
+  <!-- thyroid gland -->
+  <path d="M408 212 C 362 196, 314 250, 310 330 C 306 410, 322 480, 366 486 C 398 490, 414 462, 414 430 L 414 228 C 414 220, 412 214, 408 212 Z" fill="#E59A8F" stroke="#A24A3F" stroke-width="3"/>
+  <path d="M492 212 C 538 196, 586 250, 590 330 C 594 410, 578 480, 534 486 C 502 490, 486 462, 486 430 L 486 228 C 486 220, 488 214, 492 212 Z" fill="#E59A8F" stroke="#A24A3F" stroke-width="3"/>
+  <rect x="404" y="330" width="92" height="68" rx="14" fill="#E59A8F" stroke="#A24A3F" stroke-width="3"/>
+  <rect x="398" y="333" width="104" height="62" fill="#E59A8F"/>
+  <!-- parathyroids (posterior, dashed) -->
+  <g fill="none" stroke="#B07B00" stroke-width="2.5" stroke-dasharray="5 4">
+    <ellipse cx="352" cy="262" rx="13" ry="9"/><ellipse cx="548" cy="262" rx="13" ry="9"/>
+    <ellipse cx="350" cy="452" rx="13" ry="9"/><ellipse cx="550" cy="452" rx="13" ry="9"/>
+  </g>
+  <!-- superior thyroid arteries (from ECA) -->
+  <path d="M276 110 C 300 140, 330 170, 352 222" stroke="#C84B41" stroke-width="7" fill="none"/>
+  <path d="M624 110 C 600 140, 570 170, 548 222" stroke="#C84B41" stroke-width="7" fill="none"/>
+  <!-- veins -->
+  <path d="M215 120 C 270 150, 320 190, 340 230" stroke="#3E6FB0" stroke-width="5" fill="none"/>
+  <path d="M215 350 C 250 352, 290 350, 314 350" stroke="#3E6FB0" stroke-width="5" fill="none"/>
+  <path d="M685 350 C 650 352, 610 350, 586 350" stroke="#3E6FB0" stroke-width="5" fill="none"/>
+  <path d="M440 400 C 438 470, 436 560, 432 664" stroke="#3E6FB0" stroke-width="5" fill="none"/>
+  <path d="M462 400 C 464 470, 466 560, 470 664" stroke="#3E6FB0" stroke-width="5" fill="none"/>
+  
+  <text x="330" y="600" font-size="22" font-weight="700" fill="#0C2A45" text-anchor="middle">Right</text>
+  <text x="570" y="600" font-size="22" font-weight="700" fill="#0C2A45" text-anchor="middle">Left</text>
+  <text x="450" y="22" font-size="17" fill="#5A6678" text-anchor="middle">Anterior view</text>
+  </g>
+  <g>
+  <line x1="307" y1="102" x2="575" y2="148" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="575" cy="148" r="5" fill="#0C2A45"/>
+  <text x="12" y="98" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="start">Superior thyroid a.</text><text x="12" y="128" font-size="24" fill="#5A6678" text-anchor="start">external carotid</text>
+  <line x1="277" y1="282" x2="560" y2="350" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="560" cy="350" r="5" fill="#0C2A45"/>
+  <text x="12" y="278" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="start">Middle thyroid v.</text><text x="12" y="308" font-size="24" fill="#5A6678" text-anchor="start">to IJV</text>
+  <line x1="307" y1="462" x2="460" y2="520" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="460" cy="520" r="5" fill="#0C2A45"/>
+  <text x="12" y="458" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="start">Inferior thyroid a.</text><text x="12" y="488" font-size="24" fill="#5A6678" text-anchor="start">thyrocervical trunk</text>
+  <line x1="202" y1="632" x2="610" y2="430" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="610" cy="430" r="5" fill="#0C2A45"/>
+  <text x="12" y="628" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="start">Thyroid lobe</text><text x="12" y="658" font-size="24" fill="#5A6678" text-anchor="start">right side</text>
+  <line x1="1202" y1="102" x2="740" y2="368" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="740" cy="368" r="5" fill="#0C2A45"/>
+  <text x="1428" y="98" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="end">Isthmus</text><text x="1428" y="128" font-size="24" fill="#5A6678" text-anchor="end">tracheal rings 2–4</text>
+  <line x1="1214" y1="282" x2="820" y2="452" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="820" cy="452" r="5" fill="#0C2A45"/>
+  <text x="1428" y="278" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="end">Parathyroids</text><text x="1428" y="308" font-size="24" fill="#5A6678" text-anchor="end">posterior surface</text>
+  <line x1="1088" y1="462" x2="769" y2="560" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="769" cy="560" r="5" fill="#0C2A45"/>
+  <text x="1428" y="458" font-size="30" font-weight="700" fill="#9A6F00" text-anchor="end">Recurrent laryngeal n.</text><text x="1428" y="488" font-size="24" fill="#5A6678" text-anchor="end">tracheo-oesophageal groove</text>
+  <line x1="1118" y1="632" x2="738" y2="620" stroke="#5A6678" stroke-width="2"/>
+  <circle cx="738" cy="620" r="5" fill="#0C2A45"/>
+  <text x="1428" y="628" font-size="30" font-weight="700" fill="#0C2A45" text-anchor="end">Inferior thyroid vv.</text><text x="1428" y="658" font-size="24" fill="#5A6678" text-anchor="end">to brachiocephalic v.</text>
+  </g>
+</svg>

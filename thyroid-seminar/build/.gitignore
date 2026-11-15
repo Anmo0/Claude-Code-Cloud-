@@ -1,0 +1,5 @@
+node_modules/
+slide-*.jpg
+grid-*.jpg
+*.pdf
+package-lock.json
