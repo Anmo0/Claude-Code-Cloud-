@@ -344,61 +344,111 @@ divider(4);
 
 divider(5);
 // =====================================================================
-// 12. Examination + laboratory tests
+// 12. Clinical examination
 // =====================================================================
 {
-  const s = content(5, "Workup: examination and laboratory tests", "[2] Browse; [8] ATA 2015; [10] ATA MTC 2015",
-    "Examination: a thyroid swelling moves on swallowing (pretracheal fascia); a thyroglossal cyst also moves on tongue protrusion. Palpate from behind: size, surface, consistency, mobility, lower border (retrosternal extension). Examine all cervical node levels. Check trachea, Pemberton sign, and document vocal cords by laryngoscopy before surgery.\n" +
-    "Laboratory: TSH first. If TSH is low, isotope scan: a 'hot' nodule is rarely malignant. Thyroglobulin is not diagnostic; it is used after total thyroidectomy. Calcitonin and CEA are the medullary markers. If medullary: germline RET, plasma metanephrines (exclude phaeochromocytoma before surgery), serum calcium.");
-  card(s, { x: X0, y: 1.65, w: 5.95, h: 4.2, color: TEAL, kicker: "Clinical examination", title: "Neck palpation", rows: [
-    { l: "Inspect", t: "Moves on swallowing; thyroglossal cyst moves with tongue" },
-    { l: "Palpate", t: "From behind: size, consistency, mobility, lower border" },
-    { l: "Nodes", t: "All cervical levels: hard or matted nodes", b: true },
-    { l: "Special", t: "Trachea, Pemberton sign; laryngoscopy before surgery" } ] });
-  card(s, { x: X0 + 6.18, y: 1.65, w: 5.95, h: 4.2, color: RED, kicker: "Laboratory tests", title: "Function first, then markers", rows: [
-    { l: "TSH", t: "First test; low TSH → isotope scan ('hot' = rarely cancer)", b: true },
-    { l: "Thyroglobulin", t: "Not diagnostic; for follow-up after thyroidectomy" },
-    { l: "Calcitonin · CEA", t: "Medullary carcinoma markers" },
-    { l: "If medullary", t: "RET testing; metanephrines; calcium" } ] });
-  remember(s, "a hard, fixed nodule with nodes or a hoarse voice is malignant until proven otherwise", 6.12);
+  const s = content(5, "Clinical examination and neck palpation", "[2] Browse",
+    "Inspect from the front: a thyroid swelling moves up on swallowing (pretracheal fascia). A thyroglossal cyst also moves on tongue protrusion.\n" +
+    "Palpate from behind with the neck slightly flexed: size, surface, consistency, tenderness, mobility, and whether you can get below the lower border (if not, suspect retrosternal extension).\n" +
+    "Examine all cervical node levels systematically.\n" +
+    "Special tests: tracheal position; Pemberton sign for retrosternal goitre (facial plethora on raising both arms); percussion over the manubrium; auscultation for a bruit.\n" +
+    "Document vocal cord function (laryngoscopy) before any thyroid surgery.");
+  const steps = [
+    ["Step 1", "Inspect", TEAL, "Front view; ask the patient to swallow", "Thyroid rises on swallowing; thyroglossal cyst rises on tongue protrusion"],
+    ["Step 2", "Palpate", TEAL, "From behind, neck slightly flexed", "Size, surface, consistency, mobility; can you get below it?"],
+    ["Step 3", "Nodes", RED, "All cervical levels on both sides", "Hard or matted nodes suggest metastasis"],
+    ["Step 4", "Special tests", RED, "Trachea, Pemberton sign, percussion, bruit", "Retrosternal extension; laryngoscopy before surgery"],
+  ];
+  steps.forEach(([k, t, c, how, look], i) => card(s, { x: X0 + i * 3.093, y: 1.7, w: 2.92, h: 4.15, color: c, kicker: k, title: t, rows: [
+    { l: "How", t: how }, { l: "Look for", t: look, b: true } ] }));
+  remember(s, "a hard, fixed nodule with ipsilateral nodes or a hoarse voice is malignant until proven otherwise", 6.12);
 }
 
 // =====================================================================
-// 14. Imaging + FNAC
+// 13. Laboratory tests
 // =====================================================================
 {
-  const s = content(5, "Workup: ultrasound and FNAC decide the next step", "[6] ACR TI-RADS; [7] Bethesda 2023; [8] ATA 2015",
-    "Ultrasound is first-line for every nodule and the neck nodes. ACR TI-RADS: TR3 FNA ≥2.5 cm (follow ≥1.5), TR4 FNA ≥1.5 cm (follow ≥1.0), TR5 FNA ≥1.0 cm (follow ≥0.5); TR1–2 no FNA.\n" +
-    "CT/MRI for retrosternal, invasive or bulky nodal disease (iodinated contrast can delay radioiodine). Isotope scan only when TSH is low. FDG-PET for anaplastic staging and iodine-refractory disease.\n" +
-    "Bethesda 2023 risk of malignancy and usual action: I nondiagnostic 13% (repeat FNA); II benign 4% (follow-up); III AUS 22% (repeat FNA, molecular test or lobectomy); IV follicular neoplasm 30% (molecular test or lobectomy); V suspicious 74% (surgery); VI malignant 97% (surgery).\n" +
-    "Core biopsy: repeated nondiagnostic FNA, or suspected anaplastic carcinoma or lymphoma (needs architecture and immunohistochemistry).");
-  const tr = [["TR1", "Benign", "No FNA", "5E8F6B"], ["TR2", "Not suspicious", "No FNA", "5E8F6B"], ["TR3", "Mildly suspicious", "FNA ≥ 2.5 cm", "C9A227"], ["TR4", "Moderately susp.", "FNA ≥ 1.5 cm", ORANGE], ["TR5", "Highly suspicious", "FNA ≥ 1.0 cm", RED]];
-  const tx = X0, tw = 5.95;
-  box(s, tx, 1.65, tw, 4.2); topbar(s, tx, 1.65, tw, TEAL);
-  label(s, "Ultrasound · ACR TI-RADS", tx + 0.28, 1.93, 5, TEAL, 10.5);
-  tr.forEach(([k, n, a, c], i) => {
-    const y = 2.4 + i * 0.66;
-    s.addShape(pres.shapes.RECTANGLE, { x: tx + 0.28, y, w: tw - 0.56, h: 0.56, fill: { color: i % 2 ? WHITE : ROWALT }, line: { type: "none" } });
-    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: tx + 0.36, y: y + 0.09, w: 0.72, h: 0.38, fill: { color: c }, line: { type: "none" }, rectRadius: 0.08 });
-    s.addText(k, { x: tx + 0.36, y: y + 0.09, w: 0.72, h: 0.38, fontSize: 13, bold: true, color: WHITE, align: "center", valign: "middle", margin: 0, isTextBox: true });
-    s.addText(n, { x: tx + 1.22, y, w: 2.6, h: 0.56, fontSize: 14, color: NAVY, bold: true, valign: "middle", margin: 0, isTextBox: true });
-    s.addText(a, { x: tx + 3.85, y, w: 1.9, h: 0.56, fontSize: 14, bold: i > 1, color: i > 1 ? NAVY : BODY, valign: "middle", margin: 0, isTextBox: true });
+  const s = content(5, "Laboratory tests: function first, then markers", "[8] ATA 2015; [10] ATA MTC 2015",
+    "Serum TSH is the first test for every nodule. If TSH is low, do radionuclide scintigraphy: a hyperfunctioning ('hot') nodule is rarely malignant and does not need FNA.\n" +
+    "Thyroglobulin is not a diagnostic test (it is raised in benign disease); it is used for surveillance after total thyroidectomy, interpreted with anti-thyroglobulin antibodies.\n" +
+    "Calcitonin: marker of medullary carcinoma. Routine screening of all nodules is debated; measure when MTC is suspected. CEA supports staging and follow-up.\n" +
+    "If medullary cancer is diagnosed: germline RET testing, plasma free metanephrines (exclude phaeochromocytoma before surgery), and serum calcium (hyperparathyroidism).\n" +
+    "Molecular testing of indeterminate FNA (for example BRAF, RAS, gene classifiers) can refine risk.");
+  card(s, { x: X0, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "First test", title: "Thyroid function", rows: [
+    { l: "TSH", t: "First for every nodule", b: true },
+    { l: "Low TSH", t: "Isotope scan: 'hot' nodule rarely malignant" },
+    { l: "Free T4 / T3", t: "Most cancers are euthyroid" } ] });
+  card(s, { x: X0 + 4.125, y: 1.7, w: 3.88, h: 4.15, color: RED, kicker: "Tumour markers", title: "Use them correctly", rows: [
+    { l: "Thyroglobulin", t: "Not diagnostic; for follow-up after total thyroidectomy", b: true },
+    { l: "Calcitonin", t: "Medullary carcinoma marker" },
+    { l: "CEA", t: "Medullary staging and follow-up" } ] });
+  card(s, { x: X0 + 8.25, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "If medullary", title: "Before surgery", rows: [
+    { l: "Genetics", t: "Germline RET testing" },
+    { l: "Adrenal", t: "Metanephrines: exclude phaeochromocytoma", b: true },
+    { l: "Calcium", t: "Look for hyperparathyroidism (MEN2A)" } ] });
+  remember(s, "thyroglobulin does not diagnose cancer; it monitors patients after total thyroidectomy", 6.12);
+}
+
+// =====================================================================
+// 14. Imaging
+// =====================================================================
+{
+  const s = content(5, "Imaging: ultrasound first, the rest by question", "[6] ACR TI-RADS; [8] ATA 2015",
+    "Ultrasound is the first-line test for every nodule and for the cervical nodes. ACR TI-RADS adds points for composition, echogenicity, shape, margin and echogenic foci; the level and the nodule size decide FNA or follow-up.\n" +
+    "TR3: FNA if ≥2.5 cm, follow if ≥1.5 cm. TR4: FNA if ≥1.5 cm, follow if ≥1.0 cm. TR5: FNA if ≥1.0 cm, follow if ≥0.5 cm. TR1 and TR2: no FNA.\n" +
+    "CT or MRI: retrosternal extension, invasion of trachea or oesophagus, bulky or mediastinal nodes. Iodinated contrast can delay radioiodine therapy, so plan it.\n" +
+    "Radionuclide scan (Tc-99m or I-123): only when TSH is low, to find a hot nodule.\n" +
+    "FDG-PET: staging anaplastic cancer and radioiodine-refractory disease.");
+  const tr = [["TR1", "Benign", "0", "No FNA", "5E8F6B"], ["TR2", "Not suspicious", "2", "No FNA", "5E8F6B"], ["TR3", "Mildly suspicious", "3", "FNA ≥ 2.5 cm", "C9A227"], ["TR4", "Moderately suspicious", "4–6", "FNA ≥ 1.5 cm", ORANGE], ["TR5", "Highly suspicious", "≥ 7", "FNA ≥ 1.0 cm", RED]];
+  const tx = X0, tw = 6.9;
+  box(s, tx, 1.7, tw, 4.15); topbar(s, tx, 1.7, tw, TEAL);
+  label(s, "Ultrasound · ACR TI-RADS", tx + 0.28, 1.98, 5, TEAL, 10.5);
+  ["Level", "Points", "Action"].forEach((h, j) => s.addText(h.toUpperCase(), { x: [tx + 0.28, tx + 3.85, tx + 4.85][j], y: 2.32, w: 1.8, h: 0.3, fontSize: 10, bold: true, color: MUTED, charSpacing: 2, margin: 0, isTextBox: true }));
+  tr.forEach(([k, n, p, a, c], i) => {
+    const y = 2.68 + i * 0.6;
+    s.addShape(pres.shapes.RECTANGLE, { x: tx + 0.28, y, w: tw - 0.56, h: 0.52, fill: { color: i % 2 ? WHITE : ROWALT }, line: { type: "none" } });
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: tx + 0.36, y: y + 0.07, w: 0.72, h: 0.38, fill: { color: c }, line: { type: "none" }, rectRadius: 0.08 });
+    s.addText(k, { x: tx + 0.36, y: y + 0.07, w: 0.72, h: 0.38, fontSize: 13, bold: true, color: WHITE, align: "center", valign: "middle", margin: 0, isTextBox: true });
+    s.addText(n, { x: tx + 1.2, y, w: 2.6, h: 0.52, fontSize: 14, color: NAVY, bold: true, valign: "middle", margin: 0, isTextBox: true });
+    s.addText(p, { x: tx + 3.85, y, w: 0.9, h: 0.52, fontSize: 14, color: BODY, valign: "middle", margin: 0, isTextBox: true });
+    s.addText(a, { x: tx + 4.85, y, w: 1.8, h: 0.52, fontSize: 14, bold: i > 1, color: i > 1 ? NAVY : BODY, valign: "middle", margin: 0, isTextBox: true });
   });
-  const cats = [["I", "Nondiagnostic", 13], ["II", "Benign", 4], ["III", "AUS", 22], ["IV", "Follicular neoplasm", 30], ["V", "Suspicious", 74], ["VI", "Malignant", 97]];
-  const bx0 = X0 + 6.18;
-  box(s, bx0, 1.65, tw, 4.2); topbar(s, bx0, 1.65, tw, RED);
-  label(s, "FNAC · Bethesda 2023 risk of malignancy", bx0 + 0.28, 1.93, 5.4, RED, 10.5);
-  cats.forEach(([k, n, m], i) => {
-    const y = 2.35 + i * 0.57;
+  card(s, { x: 7.75, y: 1.7, w: 4.98, h: 4.15, color: TEAL, kicker: "Beyond ultrasound", title: "When to add", rows: [
+    { l: "CT / MRI", t: "Retrosternal, invasive or bulky nodal disease" },
+    { l: "Isotope scan", t: "Only if TSH is low: hot vs cold", b: true },
+    { l: "FDG-PET", t: "Anaplastic staging; iodine-refractory disease" } ] });
+  remember(s, "iodinated CT contrast can delay radioiodine therapy; request it only when it changes management", 6.12, "Caution: ");
+}
+
+// =====================================================================
+// 15. FNAC and core biopsy (Bethesda 2023)
+// =====================================================================
+{
+  const s = content(5, "FNAC and core biopsy: Bethesda 2023 guides action", "[7] Bethesda 2023",
+    "Ultrasound-guided FNA is the key diagnostic test. Results are reported in the six Bethesda categories, each with an implied risk of malignancy (2023, 3rd edition; mean and range):\n" +
+    "I Nondiagnostic 13% (5–20): repeat US-guided FNA. II Benign 4% (2–7): follow-up. III AUS 22% (13–30): repeat FNA, molecular testing, or lobectomy. IV Follicular neoplasm 30% (23–34): molecular testing or lobectomy. V Suspicious for malignancy 74% (67–83): molecular testing or surgery. VI Malignant 97% (97–100): surgery.\n" +
+    "Limitation: FNA cannot tell follicular adenoma from follicular carcinoma (needs capsule and vessels on histology).\n" +
+    "Core needle biopsy keeps tissue architecture: useful after repeated nondiagnostic FNA and when anaplastic carcinoma or lymphoma is suspected (immunohistochemistry, flow studies).");
+  const cats = [["I", "Nondiagnostic", 13, "5–20", "Repeat US-guided FNA"], ["II", "Benign", 4, "2–7", "Clinical and US follow-up"], ["III", "AUS", 22, "13–30", "Repeat FNA / molecular / lobectomy"], ["IV", "Follicular neoplasm", 30, "23–34", "Molecular testing or lobectomy"], ["V", "Suspicious for malignancy", 74, "67–83", "Molecular testing or surgery"], ["VI", "Malignant", 97, "97–100", "Surgery"]];
+  const tx = X0, tw = 8.0;
+  box(s, tx, 1.7, tw, 4.15); topbar(s, tx, 1.7, tw, RED);
+  label(s, "Risk of malignancy, mean (range)", tx + 0.28, 1.98, 5, RED, 10.5);
+  cats.forEach(([k, n, m, r, a], i) => {
+    const y = 2.38 + i * 0.57;
     const c = m >= 70 ? RED : m >= 20 ? ORANGE : TEAL;
-    s.addText(k, { x: bx0 + 0.28, y, w: 0.45, h: 0.5, fontSize: 15, bold: true, color: c, valign: "middle", margin: 0, isTextBox: true });
-    s.addText(n, { x: bx0 + 0.75, y, w: 2.2, h: 0.5, fontSize: 14, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
-    const bx = bx0 + 3.0, bw = 1.9;
+    s.addText(k, { x: tx + 0.28, y, w: 0.45, h: 0.5, fontSize: 15, bold: true, color: c, valign: "middle", margin: 0, isTextBox: true });
+    s.addText(n, { x: tx + 0.75, y, w: 2.3, h: 0.5, fontSize: 13.5, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
+    const bx = tx + 3.1, bw = 1.6;
     s.addShape(pres.shapes.RECTANGLE, { x: bx, y: y + 0.15, w: bw, h: 0.2, fill: { color: "E3E7EE" }, line: { type: "none" } });
     s.addShape(pres.shapes.RECTANGLE, { x: bx, y: y + 0.15, w: Math.max(0.04, bw * m / 100), h: 0.2, fill: { color: c }, line: { type: "none" } });
-    s.addText(`${m}%`, { x: bx + bw + 0.1, y, w: 0.65, h: 0.5, fontSize: 14, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
+    s.addText(`${m}% (${r})`, { x: bx + bw + 0.1, y, w: 1.2, h: 0.5, fontSize: 12.5, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
+    s.addText(a, { x: tx + 6.0, y, w: 1.85, h: 0.5, fontSize: 11.5, color: BODY, valign: "middle", margin: 0, isTextBox: true });
   });
-  remember(s, "CT/MRI if invasive or retrosternal · isotope scan only if TSH is low · core biopsy if anaplastic or lymphoma suspected", 6.12, "Also: ");
+  card(s, { x: 8.85, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "Tissue sampling", title: "FNA vs core", rows: [
+    { l: "FNAC", t: "First-line, US-guided; reported as Bethesda", b: true },
+    { l: "Limit", t: "Cannot separate follicular adenoma from carcinoma" },
+    { l: "Core biopsy", t: "Repeat nondiagnostic; suspected anaplastic or lymphoma" } ] });
+  remember(s, "Bethesda III–IV are 'indeterminate': molecular testing or diagnostic lobectomy settles them", 6.12, "Key: ");
 }
 
 divider(6);
@@ -433,249 +483,161 @@ divider(6);
 }
 
 // =====================================================================
-// 17. Surgery + non-surgical
+// 17. Surgical management
 // =====================================================================
 {
-  const s = content(6, "Treatment options: surgical and non-surgical", "[8] ATA 2015; [11] ATA ATC 2021; [18] LIBRETTO-001",
-    "Lobectomy: low-risk differentiated cancer < 1 cm; acceptable for low-risk 1–4 cm tumours; diagnostic for indeterminate nodules.\n" +
-    "Total thyroidectomy: tumour > 4 cm, gross extrathyroidal extension, clinical nodal or distant metastases, medullary cancer, or when radioiodine is planned.\n" +
-    "Neck dissection: therapeutic central (VI) for involved nodes and routinely in medullary; lateral (II–V) only for proven lateral nodes.\n" +
-    "Complications: recurrent laryngeal nerve palsy, hypocalcaemia, haematoma (airway emergency), external laryngeal nerve injury.\n" +
-    "Non-surgical: radioiodine (I-131) after total thyroidectomy for differentiated cancer only, selective in low risk; TSH suppression by risk; external beam radiotherapy for anaplastic or gross residual disease; systemic therapy: lenvatinib/sorafenib (iodine-refractory), selpercatinib (RET, medullary), dabrafenib + trametinib (BRAF anaplastic).");
-  card(s, { x: X0, y: 1.65, w: 5.95, h: 5.15, color: TEAL, kicker: "Surgical", title: "Operation by extent", rows: [
-    { l: "Lobectomy", t: "Low-risk DTC < 1 cm; option for 1–4 cm; diagnostic" },
-    { l: "Total thyroidectomy", t: "> 4 cm, gross ETE, nodes or metastases, medullary", b: true },
-    { l: "Neck dissection", t: "Central (VI) if nodes and in medullary; lateral only if proven" },
-    { l: "Complications", t: "Nerve palsy, hypocalcaemia, haematoma (airway emergency)" } ] });
-  card(s, { x: X0 + 6.18, y: 1.65, w: 5.95, h: 5.15, color: RED, kicker: "Non-surgical", title: "Adjuvant and advanced disease", rows: [
-    { l: "Radioiodine", t: "After total thyroidectomy; differentiated cancer only", b: true },
-    { l: "TSH suppression", t: "Levothyroxine; target set by risk and response" },
-    { l: "External beam RT", t: "Anaplastic; gross residual or unresectable disease" },
-    { l: "Systemic therapy", t: "Lenvatinib (iodine-refractory); RET and BRAF inhibitors" } ] });
+  const s = content(6, "Surgery: lobectomy, thyroidectomy, neck dissection", "[8] ATA 2015; [1] Bailey & Love",
+    "Lobectomy: low-risk differentiated cancer under 1 cm without extrathyroidal extension or nodes; acceptable for 1–4 cm low-risk tumours; diagnostic lobectomy for indeterminate nodules.\n" +
+    "Total thyroidectomy: tumour > 4 cm, gross extrathyroidal extension, clinical nodal or distant metastases, medullary carcinoma, and when radioiodine is planned.\n" +
+    "Neck dissection: therapeutic central (level VI) dissection for clinically involved nodes; prophylactic central dissection may be considered for advanced primaries (T3–T4) or clinical lateral nodes; lateral compartmental dissection (II–V) for biopsy-proven lateral nodes. Routine central dissection in medullary carcinoma.\n" +
+    "Complications to consent for: recurrent laryngeal nerve palsy, hypocalcaemia from hypoparathyroidism, neck haematoma (an airway emergency: open the wound at the bedside), and external branch of the superior laryngeal nerve injury (loss of high-pitched voice).");
+  card(s, { x: X0, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "Option 1", title: "Lobectomy", rows: [
+    { l: "Low-risk DTC", t: "< 1 cm without ETE or nodes", b: true },
+    { l: "1–4 cm", t: "Lobectomy or total if low risk" },
+    { l: "Diagnostic", t: "Indeterminate (Bethesda III–IV)" } ] });
+  card(s, { x: X0 + 4.125, y: 1.7, w: 3.88, h: 4.15, color: RED, kicker: "Option 2", title: "Total thyroidectomy", rows: [
+    { l: "Tumour", t: "> 4 cm or gross extrathyroidal extension", b: true },
+    { l: "Spread", t: "Clinical nodes or distant metastases" },
+    { l: "Other", t: "Medullary cancer; radioiodine planned" } ] });
+  card(s, { x: X0 + 8.25, y: 1.7, w: 3.88, h: 4.15, color: RED, kicker: "Nodes", title: "Neck dissection", rows: [
+    { l: "Central (VI)", t: "Therapeutic for involved nodes; routine in medullary" },
+    { l: "Prophylactic", t: "Consider in T3–T4 or lateral node disease" },
+    { l: "Lateral (II–V)", t: "Only for proven lateral nodes", b: true } ] });
+  remember(s, "nerve palsy, hypocalcaemia, haematoma (airway emergency), superior laryngeal nerve injury", 6.12, "Complications: ");
+}
+
+// =====================================================================
+// 18. Non-surgical options
+// =====================================================================
+{
+  const s = content(6, "Non-surgical: radioiodine, radiotherapy, drugs", "[9] ATA 2025; [11] ATA ATC 2021; [18] LIBRETTO-001",
+    "Radioactive iodine (I-131): used after total thyroidectomy for differentiated cancer only, as remnant ablation, adjuvant therapy, or treatment of known disease. Needs TSH stimulation (withdrawal or recombinant TSH) and a low-iodine diet. ATA 2025 is more selective for low-risk patients.\n" +
+    "TSH suppression with levothyroxine: degree set by risk and response; over-suppression risks atrial fibrillation and bone loss.\n" +
+    "External beam radiotherapy: anaplastic cancer, unresectable or gross residual disease, non-iodine-avid disease, palliation of bone metastases.\n" +
+    "Systemic therapy: multikinase inhibitors (lenvatinib, sorafenib) for progressive radioiodine-refractory differentiated cancer; for medullary: vandetanib, cabozantinib, or the selective RET inhibitor selpercatinib; for BRAF V600E anaplastic cancer: dabrafenib + trametinib; lymphoma: chemotherapy.");
+  card(s, { x: X0, y: 1.7, w: 2.92, h: 4.15, color: TEAL, kicker: "Option 1", title: "Radioiodine", rows: [
+    { l: "Use", t: "I-131 after total thyroidectomy" }, { l: "Needs", t: "TSH stimulation; low-iodine diet" }, { l: "Only for", t: "Differentiated cancer; selective in low risk", b: true } ] });
+  card(s, { x: X0 + 3.093, y: 1.7, w: 2.92, h: 4.15, color: TEAL, kicker: "Option 2", title: "TSH suppression", rows: [
+    { l: "How", t: "Levothyroxine" }, { l: "Target", t: "Set by risk and response", b: true }, { l: "Risk", t: "Atrial fibrillation, bone loss" } ] });
+  card(s, { x: X0 + 6.186, y: 1.7, w: 2.92, h: 4.15, color: ORANGE, kicker: "Option 3", title: "External beam RT", rows: [
+    { l: "Anaplastic", t: "Local control, with drugs" }, { l: "Residual", t: "Gross residual or unresectable disease", b: true }, { l: "Palliation", t: "Painful bone metastases" } ] });
+  card(s, { x: X0 + 9.279, y: 1.7, w: 2.92, h: 4.15, color: RED, kicker: "Option 4", title: "Systemic therapy", rows: [
+    { l: "Iodine-refractory", t: "Lenvatinib, sorafenib" }, { l: "Medullary", t: "RET inhibitor (selpercatinib)" }, { l: "BRAF anaplastic", t: "Dabrafenib + trametinib", b: true } ] });
+  remember(s, "medullary and anaplastic cancers do not take up iodine: radioiodine has no role", 6.12);
 }
 
 divider(7);
 // =====================================================================
-// 19. MY PART — Follow-up and surveillance
+// 21. MY PART — Prognosis and outcomes (single slide)
 // =====================================================================
 {
-  const s = content(7, "Follow-up: response to therapy guides surveillance", "[8] ATA 2015; [9] ATA 2025; [10] ATA MTC 2015",
-`SCRIPT (about 55 seconds)
-"Now to prognosis. After treatment of differentiated cancer we follow two things: thyroglobulin, always with its antibodies, and neck ultrasound. Six to twelve months after treatment, each patient falls into one of four response groups. Excellent response means no evidence of disease, and recurrence of only one to four percent. Indeterminate patients mostly stay stable. Biochemical incomplete means a raised thyroglobulin with normal imaging; about a third settle on their own. Structural incomplete means visible disease and the highest risk. This response sets the TSH target and how often we follow up. The 2025 ATA guideline adds de-escalation: low-risk patients with an excellent response can stop ultrasound after five to eight years. Medullary cancer is followed with calcitonin and CEA instead."
+  const s = content(7, "Prognosis: follow-up, risk factors and survival", "[8] ATA 2015; [9] ATA 2025; [12] AJCC 8th; [14] SEER; [16] Roman 2006; [11] ATA ATC 2021",
+`SCRIPT (about 60 seconds)
+"Prognosis in one slide. After treatment of differentiated cancer we follow thyroglobulin with its antibodies, plus neck ultrasound. At six to twelve months each patient is classed by response: an excellent response carries a recurrence risk of only one to four percent, while a structural incomplete response carries the highest risk. Medullary cancer is followed with calcitonin and CEA.
+The main prognostic factors are age, with fifty-five years as the AJCC cut-off, distant metastases, gross extrathyroidal extension, aggressive histology, and incomplete resection.
+Survival is excellent: in SEER data it is almost one hundred percent at five years for localised and regional disease, but about fifty percent with distant metastases. Anaplastic cancer is the exception, with a median survival of about five months. Recurrence is more common than death, so follow-up is long."
 
 BACKUP Q&A (not read aloud)
-Q: Why measure anti-thyroglobulin antibodies with thyroglobulin?
-A: The antibodies interfere with the assay and can make thyroglobulin falsely low. A falling antibody level is reassuring; a rising level is a surrogate for persistent disease.
+Q: Thyroglobulin cut-offs for an excellent response?
+A: After total thyroidectomy and radioiodine: suppressed Tg < 0.2 ng/mL or stimulated Tg < 1 ng/mL, negative antibodies and imaging (ATA 2015). Biochemical incomplete: suppressed Tg ≥ 1 or stimulated ≥ 10, or rising antibodies.
 
-Q: What are the thyroglobulin cut-offs for an excellent response?
-A: After total thyroidectomy and radioiodine: suppressed Tg < 0.2 ng/mL or stimulated Tg < 1 ng/mL, with negative antibodies and negative imaging (ATA 2015). Biochemical incomplete: suppressed Tg ≥ 1 or stimulated Tg ≥ 10 ng/mL, or rising antibodies.
+Q: Why measure anti-Tg antibodies?
+A: They make thyroglobulin falsely low; a rising antibody level suggests persistent disease.
 
-Q: What TSH target do you use?
-A: ATA 2015: structural incomplete or high risk: below 0.1 mU/L. Biochemical incomplete: 0.1–0.5. Excellent response in low-risk patients: 0.5–2.0. Over-suppression causes atrial fibrillation and osteoporosis, especially in older patients.
+Q: TSH targets?
+A: High risk or structural disease < 0.1 mU/L; biochemical incomplete 0.1–0.5; low risk with excellent response 0.5–2.0 (ATA 2015).
 
-Q: Can you follow a patient who had only a lobectomy?
-A: Yes, mainly with neck ultrasound. Thyroglobulin is less useful because the remaining lobe makes it; the trend matters more than a single value.
+Q: What is MACIS?
+A: Metastasis, Age, Completeness of resection, Invasion, Size. 20-year survival: < 6 = 99%, 6–6.99 = 89%, 7–7.99 = 56%, ≥ 8 = 24% (Hay 1993).
 
-Q: Why no radioiodine scan in medullary cancer follow-up?
-A: C cells do not take up iodine. Follow-up uses calcitonin and CEA; a doubling time under 6 months indicates poor prognosis, over 2 years a good one.`);
-  // response to therapy 2x2
-  const resp = [
-    ["Excellent", "No biochemical or structural disease", "Recurrence ~1–4%", TEAL],
-    ["Indeterminate", "Non-specific imaging or low Tg", "Most stay stable", "C9A227"],
-    ["Biochemical incomplete", "Raised Tg or rising TgAb; imaging negative", "~30% settle spontaneously", ORANGE],
-    ["Structural incomplete", "Disease visible on imaging", "Highest risk; most persist", RED],
-  ];
-  label(s, "Response to therapy · 6–12 months after treatment", X0, 1.62, 7, NAVY, 10.5);
-  resp.forEach(([t, d, o, c], i) => {
-    const col = i % 2, row = Math.floor(i / 2);
-    const x = X0 + col * 3.6, y = 1.98 + row * 1.98, w = 3.45, h = 1.85;
-    box(s, x, y, w, h); topbar(s, x, y, w, c);
-    s.addText(t, { x: x + 0.22, y: y + 0.2, w: w - 0.4, h: 0.42, fontSize: 16, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
-    s.addText(d, { x: x + 0.22, y: y + 0.66, w: w - 0.4, h: 0.62, fontSize: 13.5, color: BODY, valign: "top", margin: 0, isTextBox: true });
-    s.addText(o, { x: x + 0.22, y: y + 1.32, w: w - 0.4, h: 0.38, fontSize: 13.5, bold: true, color: c === "C9A227" ? "8A6D00" : c, valign: "middle", margin: 0, isTextBox: true });
+Q: AJCC vs ATA?
+A: AJCC 8th staging predicts death (age cut-off 55: under 55 is stage I, or II if M1). ATA risk predicts recurrence; ATA 2025 uses four tiers: < 10%, 10–15%, 16–30%, > 30%.
+
+Q: Medullary and anaplastic survival?
+A: Medullary 10-year: localized 96%, regional 76%, distant 40% (Roman 2006); calcitonin/CEA doubling time < 6 months is poor. Anaplastic: median about 5 months, 1-year about 20%.
+
+Q: ATA 2025 de-escalation?
+A: Low-risk patients with an excellent response can stop ultrasound after 5–8 years and thyroglobulin after 10–15 years.`);
+  // Column 1: follow-up
+  const resp = [["Excellent", "Recurrence ~1–4%", TEAL], ["Indeterminate", "Most stay stable", "B08A1A"], ["Biochemical incomplete", "Raised Tg, imaging negative", ORANGE], ["Structural incomplete", "Visible disease: highest risk", RED]];
+  box(s, X0, 1.65, 3.95, 4.2); topbar(s, X0, 1.65, 3.95, TEAL);
+  label(s, "Follow-up · response to therapy", X0 + 0.25, 1.92, 3.5, TEAL, 10);
+  s.addText("Tg + anti-Tg antibodies and neck US at 6–12 months", { x: X0 + 0.25, y: 2.22, w: 3.5, h: 0.5, fontSize: 12.5, color: BODY, margin: 0, valign: "top", isTextBox: true });
+  resp.forEach(([t, d, c], i) => {
+    const y = 2.8 + i * 0.75;
+    s.addShape(pres.shapes.RECTANGLE, { x: X0 + 0.25, y, w: 0.09, h: 0.62, fill: { color: c }, line: { type: "none" } });
+    s.addText([{ text: t, options: { bold: true, color: NAVY, fontSize: 14, breakLine: true } }, { text: d, options: { color: BODY, fontSize: 12.5 } }], { x: X0 + 0.45, y, w: 3.3, h: 0.62, valign: "middle", margin: 0, isTextBox: true });
   });
-  card(s, { x: 7.95, y: 1.62, w: 4.78, h: 4.21, color: TEAL, kicker: "Surveillance tools", title: "What we measure", rows: [
-    { l: "Differentiated", t: "Thyroglobulin + anti-Tg antibodies; neck ultrasound", b: true },
-    { l: "Medullary", t: "Calcitonin and CEA from 3 months; doubling time" },
-    { l: "Long term", t: "Levothyroxine; TSH target set by response" } ] });
-  remember(s, "low risk + excellent response: stop ultrasound after 5–8 years and thyroglobulin after 10–15 years", 6.12, "ATA 2025 de-escalation: ");
-}
-
-// =====================================================================
-// 20. MY PART — Prognostic factors
-// =====================================================================
-{
-  const s = content(7, "Prognostic factors: patient, tumor and treatment", "[12] AJCC 8th; [13] Hay 1993 (MACIS); [9] ATA 2025",
-`SCRIPT (about 55 seconds)
-"What predicts outcome? Age is the strongest patient factor: AJCC uses 55 years, and below 55 a patient is stage one unless there are distant metastases. Tumour factors are histology, size, gross extrathyroidal extension, vascular invasion, nodes, and above all distant metastases; BRAF together with TERT mutations adds risk. Treatment matters too: a complete resection and iodine-avid disease are favourable. The MACIS score combines these: below six predicts ninety-nine percent survival at twenty years, eight or more only twenty-four percent. One key point: AJCC staging predicts death, while the ATA system predicts recurrence."
-
-BACKUP Q&A (not read aloud)
-Q: How is MACIS calculated?
-A: 3.1 if age < 40 years, or 0.08 × age if ≥ 40; plus 0.3 × tumour size in cm; plus 1 if resection incomplete; plus 1 if locally invasive; plus 3 if distant metastases. 20-year cause-specific survival: < 6 = 99%, 6–6.99 = 89%, 7–7.99 = 56%, ≥ 8 = 24% (Hay 1993).
-
-Q: Other scoring systems?
-A: AGES (Age, Grade, Extent, Size) and AMES (Age, Metastases, Extent, Size). MACIS replaced grade with completeness of resection because grade is less reproducible.
-
-Q: Stage a 60-year-old with a 3 cm intrathyroidal PTC and central nodes.
-A: AJCC 8th, age ≥ 55: T2 N1a M0 = stage II. The same tumour at age 40 = stage I.
-
-Q: Why is age so important?
-A: Older patients more often have aggressive histology, less iodine-avid disease, and higher mortality; young patients have excellent survival even with nodal disease.
-
-Q: Which single factor is worst?
-A: Distant metastases (especially non-iodine-avid ones), and anaplastic histology.`);
-  card(s, { x: X0, y: 1.7, w: 3.15, h: 4.15, color: TEAL, kicker: "Patient · treatment", title: "Who and how", rows: [
+  // Column 2: prognostic factors
+  card(s, { x: X0 + 4.1, y: 1.65, w: 3.95, h: 4.2, color: RED, kicker: "Prognostic factors", title: null, rows: [
     { l: "Age", t: "AJCC cut-off 55 years", b: true },
-    { l: "Under 55", t: "Stage I (II only if M1)" },
-    { l: "Treatment", t: "Complete resection; iodine-avid disease" } ] });
-  card(s, { x: X0 + 3.33, y: 1.7, w: 3.95, h: 4.15, color: RED, kicker: "Tumour", title: "What", rows: [
-    { l: "Histology", t: "Type and aggressive subtypes" },
-    { l: "Local", t: "Size; gross ETE; vascular invasion" },
-    { l: "Spread", t: "Nodes; distant metastases (worst)", b: true },
-    { l: "Molecular", t: "BRAF V600E + TERT together" } ] });
-  card(s, { x: X0 + 7.46, y: 1.7, w: 4.67, h: 4.15, color: NAVY, kicker: "Score · MACIS", title: "20-year survival", rows: [] });
-  const mac = [["< 6", "99%", TEAL], ["6–6.99", "89%", "C9A227"], ["7–7.99", "56%", ORANGE], ["≥ 8", "24%", RED]];
-  s.addText("Metastasis · Age · Completeness · Invasion · Size", { x: X0 + 7.74, y: 2.82, w: 4.2, h: 0.3, fontSize: 12, color: MUTED, margin: 0, isTextBox: true });
-  mac.forEach(([k, v, c], i) => {
-    const y = 3.22 + i * 0.62;
-    s.addShape(pres.shapes.RECTANGLE, { x: X0 + 7.74, y, w: 4.11, h: 0.54, fill: { color: i % 2 ? WHITE : ROWALT }, line: { type: "none" } });
-    s.addText("MACIS " + k, { x: X0 + 7.9, y, w: 1.9, h: 0.54, fontSize: 14, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
-    s.addShape(pres.shapes.RECTANGLE, { x: X0 + 9.8, y: y + 0.17, w: 1.2 * parseInt(v) / 100, h: 0.2, fill: { color: c }, line: { type: "none" } });
-    s.addText(v, { x: X0 + 11.05, y, w: 0.75, h: 0.54, fontSize: 14, bold: true, color: NAVY, valign: "middle", align: "right", margin: 0, isTextBox: true });
-  });
-  remember(s, "AJCC staging predicts the risk of death; ATA risk predicts the risk of recurrence", 6.12, "Key: ");
-}
-
-// =====================================================================
-// 21. MY PART — Survival and recurrence
-// =====================================================================
-{
-  const s = content(7, "Survival is excellent; recurrence is common", "[14] SEER; [16] Roman 2006; [11] ATA ATC 2021; [9] ATA 2025",
-`SCRIPT (about 50 seconds)
-"Survival is excellent overall. In SEER data, five-year survival is almost one hundred percent for localised and regional disease, but about fifty percent with distant metastases. Histology matters: medullary cancer has ten-year survival of ninety-six percent when localised but forty percent with distant spread, while anaplastic cancer has a median survival of about five months. Recurrence, however, is common. The 2025 ATA guideline grades it in four tiers, from below ten percent to above thirty percent. Most recurrences are in the neck nodes and appear within the first decade, which is why follow-up is long."
-
-BACKUP Q&A (not read aloud)
-Q: Where does differentiated cancer recur?
-A: Mostly in cervical lymph nodes (central and lateral neck), then the thyroid bed; distant recurrence is mainly lung and bone.
-
-Q: What is the long-term recurrence rate of papillary cancer?
-A: In a 30-year cohort, recurrence was about 30%, with about two-thirds in the first decade (Mazzaferri & Kloos 2001).
-
-Q: How is recurrence treated?
-A: Biopsy the lesion (FNA with Tg washout for nodes), then compartment-oriented neck dissection for structural nodal disease, radioiodine if iodine-avid, active surveillance for small stable nodes, and systemic therapy for progressive iodine-refractory disease.
-
-Q: Why does anaplastic cancer have such poor survival?
-A: It is undifferentiated, grows within weeks, invades the airway early, is often metastatic at diagnosis, and does not take up iodine. All cases are stage IV by definition.
-
-Q: What changed between the 2015 and 2025 ATA risk systems?
-A: 2015 had three tiers (low, intermediate, high). 2025 splits intermediate into low-intermediate and intermediate-high, and reassesses risk dynamically at every visit.`);
-  // chart
-  box(s, X0, 1.62, 5.3, 4.21); topbar(s, X0, 1.62, 5.3, TEAL);
-  label(s, "5-year relative survival by stage (SEER)", X0 + 0.28, 1.9, 4.8, TEAL, 10.5);
+    { l: "Spread", t: "Distant metastases (worst)", b: true },
+    { l: "Tumour", t: "Gross ETE; aggressive histology" },
+    { l: "Treatment", t: "Incomplete resection" } ] });
+  // Column 3: survival chart
+  const cx = X0 + 8.2, cw = 3.93;
+  box(s, cx, 1.65, cw, 4.2); topbar(s, cx, 1.65, cw, NAVY);
+  label(s, "5-year survival by stage (SEER)", cx + 0.25, 1.92, 3.5, NAVY, 10);
   s.addChart(pres.charts.BAR, [{ name: "5-year survival", labels: ["Localized", "Regional", "Distant"], values: [99.9, 98.1, 50.2] }], {
-    x: X0 + 0.15, y: 2.25, w: 5.0, h: 3.5, barDir: "col", chartColors: [TEAL, TEAL, RED], barGapWidthPct: 60,
-    showValue: true, dataLabelPosition: "outEnd", dataLabelFontSize: 14, dataLabelFontBold: true, dataLabelColor: NAVY, dataLabelFormatCode: '0.0"%"',
-    valAxisHidden: true, valAxisMaxVal: 115, valAxisMinVal: 0, valGridLine: { style: "none" }, catGridLine: { style: "none" },
-    catAxisLabelColor: NAVY, catAxisLabelFontSize: 13, catAxisLabelFontFace: "+mn-lt", dataLabelFontFace: "+mn-lt", catAxisLineShow: true,
-    showLegend: false, showTitle: false,
+    x: cx + 0.1, y: 2.2, w: cw - 0.2, h: 2.75, barDir: "col", chartColors: [TEAL, TEAL, RED], barGapWidthPct: 55,
+    showValue: true, dataLabelPosition: "outEnd", dataLabelFontSize: 13, dataLabelFontBold: true, dataLabelColor: NAVY, dataLabelFormatCode: '0.0"%"',
+    valAxisHidden: true, valAxisMaxVal: 118, valAxisMinVal: 0, valGridLine: { style: "none" }, catGridLine: { style: "none" },
+    catAxisLabelColor: NAVY, catAxisLabelFontSize: 12, catAxisLabelFontFace: "+mn-lt", dataLabelFontFace: "+mn-lt", showLegend: false, showTitle: false,
   });
-  card(s, { x: X0 + 5.5, y: 1.62, w: 6.63, h: 2.55, color: RED, kicker: "By histology", title: null, rows: [
-    { l: "Medullary · 10-year survival", t: "Localized 96% · Regional 76% · Distant 40%", b: true },
-    { l: "Anaplastic", t: "Median survival ≈ 5 months; 1-year ≈ 20%", b: true } ] });
-  // recurrence tiers
-  box(s, X0 + 5.5, 4.32, 6.63, 1.51); topbar(s, X0 + 5.5, 4.32, 6.63, ORANGE);
-  label(s, "Recurrence risk · ATA 2025 (4 tiers)", X0 + 5.78, 4.55, 5, ORANGE, 10.5);
-  const tiers = [["Low", "< 10%", TEAL], ["Low-int.", "10–15%", "B08A1A"], ["Int.-high", "16–30%", ORANGE], ["High", "> 30%", RED]];
-  tiers.forEach(([t, v, c], i) => {
-    const w = 1.5, x = X0 + 5.78 + i * (w + 0.03);
-    s.addShape(pres.shapes.RECTANGLE, { x, y: 4.92, w, h: 0.78, fill: { color: c }, line: { type: "none" } });
-    s.addText([{ text: v, options: { bold: true, fontSize: 16, breakLine: true } }, { text: t, options: { fontSize: 12 } }], { x, y: 4.92, w, h: 0.78, color: WHITE, align: "center", valign: "middle", margin: 0, isTextBox: true });
-  });
-  remember(s, "nodes rarely change survival, but they drive recurrence; most recurrences are in the neck", 6.12);
+  s.addText([{ text: "Anaplastic: ", options: { bold: true, color: RED } }, { text: "median survival ≈ 5 months", options: { color: BODY } }], { x: cx + 0.25, y: 5.08, w: cw - 0.45, h: 0.6, fontSize: 13, valign: "middle", margin: 0, isTextBox: true });
+  remember(s, "recurrence is more common than death: most recur in neck nodes within the first decade", 6.12, "Key: ");
 }
 
 divider(8);
 // =====================================================================
-// 22. MY PART — Case 1
+// 23. MY PART — Case discussion (single slide)
 // =====================================================================
 {
-  const s = content(8, "Case 1: a thyroid nodule in a young woman", "[6] ACR TI-RADS; [7] Bethesda 2023; [8] ATA 2015; [12] AJCC 8th",
-`SCRIPT (about 55 seconds)
-"Case one, an illustrative case. A thirty-four-year-old woman has a two-point-two centimetre nodule; TSH is normal. Ultrasound shows TI-RADS five features and FNA is Bethesda six: papillary carcinoma. Being under fifty-five, she is AJCC stage one and low risk. Lobectomy or total thyroidectomy are both acceptable; she has a total thyroidectomy showing only micrometastases, so no routine radioiodine. At one year, her thyroglobulin is zero-point-one with negative antibodies and a clear ultrasound: an excellent response. We relax TSH suppression and space out follow-up. Had thyroglobulin been five with a clear scan, that would be a biochemical incomplete response, and we would watch the trend."
-
-BACKUP Q&A (not read aloud)
-Q: Why not give radioiodine routinely?
-A: In ATA low-risk disease, radioiodine has not been shown to improve survival or meaningfully reduce recurrence; the 2025 guideline is even more selective.
-
-Q: What would push her to total thyroidectomy as the only option?
-A: Tumour > 4 cm, gross extrathyroidal extension, clinical nodal (cN1) or distant metastases.
-
-Q: What would make her high risk?
-A: Gross extrathyroidal extension, incomplete resection, distant metastases, or bulky nodal disease (a node ≥ 3 cm).
-
-Q: Pregnancy plans?
-A: Usually advised to wait 6–12 months after radioiodine if given; levothyroxine dose often needs to increase in pregnancy.`);
-  const cols = [
-    ["Scenario", WHITE, NAVY, BODY, "34-year-old woman; painless 2.2 cm right nodule; TSH normal. US: solid, hypoechoic, irregular, microcalcifications (TR5). FNA: Bethesda VI."],
-    ["Think", TEAL_T, TEAL, BODY, "Papillary carcinoma, cT2 N0 M0. Under 55: AJCC stage I. Low risk of recurrence."],
-    ["Decide", TEAL_T, TEAL, BODY, "Lobectomy or total thyroidectomy (1–4 cm, low risk). Total done: 2 central micrometastases < 2 mm. No routine radioiodine."],
-    ["Outcome at 12 months", NAVY, MINT, WHITE, "Suppressed Tg 0.1 ng/mL, antibodies negative, US clear: excellent response. TSH 0.5–2; spaced follow-up."],
-  ];
-  cols.forEach(([h, fill, hc, tc, t], i) => {
-    const x = X0 + i * 3.093, w = 2.92, y = 1.7, hh = 4.15;
-    s.addShape(pres.shapes.RECTANGLE, { x, y, w, h: hh, fill: { color: fill }, line: { color: fill === WHITE ? BORDER : fill === TEAL_T ? "BFDDD8" : NAVY, width: 0.75 } });
-    label(s, h, x + 0.25, y + 0.25, w - 0.4, hc, 10.5);
-    s.addText(t, { x: x + 0.25, y: y + 0.65, w: w - 0.45, h: hh - 0.85, fontSize: 16.5, color: tc, bold: i === 3, valign: "top", margin: 0, isTextBox: true });
-    if (i < 3) s.addShape(pres.shapes.LINE, { x: x + w + 0.005, y: y + hh / 2, w: 0.165, h: 0, line: { color: NAVY, width: 1.5, endArrowType: "triangle" } });
-  });
-  remember(s, "if Tg were 5 ng/mL with a clear US: biochemical incomplete response → watch the trend", 6.12, "What if? ");
-}
-
-// =====================================================================
-// 23. MY PART — Cases 2 and 3
-// =====================================================================
-{
-  const s = content(8, "Cases 2 and 3: what would you do?", "[10] ATA MTC 2015; [11] ATA ATC 2021",
+  const s = content(8, "Case discussion: three nodules, three outcomes", "[7] Bethesda 2023; [8] ATA 2015; [10] ATA MTC 2015; [11] ATA ATC 2021",
 `SCRIPT (about 60 seconds)
-"Two contrasting cases. A forty-two-year-old man has a nodule, a lateral neck node, diarrhoea, and a father with thyroid cancer and severe hypertension. This is medullary cancer, probably MEN2A. Before thyroid surgery we must exclude a phaeochromocytoma, check calcium, and send RET testing. Treatment is total thyroidectomy with central and lateral neck dissection, then follow-up with calcitonin and CEA; relatives are offered RET testing.
-A seventy-four-year-old woman has a hard mass growing over three weeks, with hoarseness and breathlessness. Think anaplastic cancer, but exclude lymphoma with a core biopsy, and test for BRAF. She needs airway assessment, urgent multidisciplinary care, targeted therapy if BRAF-positive, and early palliative care. Thank you."
+"Three short illustrative cases.
+First, a thirty-four-year-old woman with a two-centimetre TI-RADS five nodule; FNA is Bethesda six: papillary cancer. She is under fifty-five, so stage one and low risk. Thyroidectomy, no routine radioiodine; at one year thyroglobulin is undetectable: an excellent response.
+Second, a forty-two-year-old man with a nodule, a neck node, diarrhoea and a family history of thyroid cancer and severe hypertension: medullary cancer, probably MEN2A. Exclude phaeochromocytoma first, then total thyroidectomy with neck dissection, and follow calcitonin and CEA.
+Third, a seventy-four-year-old woman with a hard mass growing over three weeks and hoarseness. Think anaplastic cancer, but exclude lymphoma by core biopsy and test BRAF. She needs airway assessment, urgent multidisciplinary care and early palliative input.
+Thank you."
 
 BACKUP Q&A (not read aloud)
-Q: Why exclude phaeochromocytoma before thyroidectomy in MTC?
-A: In MEN2A about half of patients develop phaeochromocytoma; anaesthesia and surgery can trigger a catecholamine crisis. Adrenalectomy with alpha-blockade comes first.
+Q: Case 1: why no routine radioiodine?
+A: In ATA low-risk disease it does not improve survival or meaningfully reduce recurrence; ATA 2025 is even more selective.
 
-Q: When is prophylactic thyroidectomy done in RET carriers?
-A: Timing depends on the ATA risk class of the RET mutation: highest risk (M918T, MEN2B) within the first year of life; high risk (codon 634) at or before age 5; moderate risk guided by calcitonin.
+Q: Case 1: what if Tg were 5 ng/mL with a clear ultrasound?
+A: Biochemical incomplete response: keep TSH mildly suppressed (0.1–0.5), follow the trend, image if rising.
 
-Q: How do you differentiate anaplastic carcinoma from lymphoma?
-A: Both are rapidly enlarging masses in older patients; lymphoma often arises in Hashimoto thyroiditis. Core biopsy with immunohistochemistry (and flow cytometry) is needed; FNA alone may be insufficient.
+Q: Case 2: why exclude phaeochromocytoma first?
+A: In MEN2A about half develop phaeochromocytoma; surgery can trigger a catecholamine crisis. Adrenalectomy with alpha-blockade comes first.
 
-Q: Is tracheostomy routine in anaplastic cancer?
-A: No. It is avoided if possible and decided by the multidisciplinary team according to goals of care; airway is assessed early.`);
+Q: Case 2: why no radioiodine?
+A: C cells do not take up iodine and are not TSH-driven.
+
+Q: Case 2: family?
+A: Offer RET testing; carriers get prophylactic thyroidectomy timed by mutation risk (e.g. M918T/MEN2B within the first year; codon 634 by age 5).
+
+Q: Case 3: how to tell anaplastic from lymphoma?
+A: Core biopsy with immunohistochemistry (± flow cytometry); lymphoma often arises in Hashimoto and is very treatable.
+
+Q: Case 3: treatment?
+A: Resect only if complete resection is realistic; dabrafenib + trametinib if BRAF V600E; radiotherapy; early palliative care. Median survival about 5 months.`);
   const cases = [
-    { x: X0, color: RED, k: "Case 2", t: "42-year-old man", sc: "2 cm firm nodule + level III node; diarrhoea; father: thyroid cancer and severe hypertension episodes. High calcitonin and CEA.",
-      th: "Medullary carcinoma, likely MEN2A: RET testing; exclude phaeochromocytoma; check calcium",
-      de: "Adrenal first if needed → total thyroidectomy + central and lateral neck dissection. Follow calcitonin/CEA" },
-    { x: X0 + 6.18, color: TEAL, k: "Case 3", t: "74-year-old woman", sc: "Hard, fixed neck mass growing over 3 weeks; hoarseness and breathlessness.",
-      th: "Anaplastic carcinoma vs lymphoma: core biopsy, BRAF V600E; stage IV by definition",
-      de: "Secure airway; urgent MDT; BRAF-targeted therapy ± RT; early palliative care" },
+    { k: "Case 1", t: "Woman, 34", c: TEAL, sc: "2 cm nodule, TI-RADS 5; FNA Bethesda VI", th: "Papillary cancer; under 55: stage I, low risk", de: "Thyroidectomy; no routine RAI. Tg undetectable at 1 year: excellent response" },
+    { k: "Case 2", t: "Man, 42", c: ORANGE, sc: "Nodule + neck node; diarrhoea; father: thyroid cancer, severe hypertension", th: "Medullary cancer, likely MEN2A", de: "Exclude phaeochromocytoma → total thyroidectomy + neck dissection; follow calcitonin/CEA" },
+    { k: "Case 3", t: "Woman, 74", c: RED, sc: "Hard mass growing over 3 weeks; hoarseness, breathlessness", th: "Anaplastic vs lymphoma: core biopsy, BRAF", de: "Airway; urgent MDT; BRAF-targeted therapy; early palliative care" },
   ];
-  cases.forEach((c) => {
-    const w = 5.95;
-    box(s, c.x, 1.62, w, 5.2); topbar(s, c.x, 1.62, w, c.color);
-    label(s, c.k, c.x + 0.28, 1.85, 3, c.color, 10.5);
-    s.addText(c.t, { x: c.x + 0.28, y: 2.12, w: w - 0.5, h: 0.42, fontSize: 18, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
-    const ix = c.x + 0.28, iw = w - 0.56;
-    // scenario
-    s.addShape(pres.shapes.RECTANGLE, { x: ix, y: 2.65, w: iw, h: 1.4, fill: { color: WHITE }, line: { color: BORDER, width: 0.75 } });
-    label(s, "Scenario", ix + 0.15, 2.72, 3, TEAL, 10);
-    s.addText(c.sc, { x: ix + 0.15, y: 2.98, w: iw - 0.3, h: 1.02, fontSize: 14, color: BODY, valign: "top", margin: 0, isTextBox: true });
-    s.addShape(pres.shapes.RECTANGLE, { x: ix, y: 4.12, w: iw, h: 1.25, fill: { color: TEAL_T }, line: { color: "BFDDD8", width: 0.75 } });
-    label(s, "Think", ix + 0.15, 4.19, 3, TEAL, 10);
-    s.addText(c.th, { x: ix + 0.15, y: 4.45, w: iw - 0.3, h: 0.88, fontSize: 14, color: BODY, valign: "top", margin: 0, isTextBox: true });
-    s.addShape(pres.shapes.RECTANGLE, { x: ix, y: 5.44, w: iw, h: 1.25, fill: { color: NAVY }, line: { color: NAVY, width: 0.75 } });
-    label(s, "Decide", ix + 0.15, 5.51, 3, MINT, 10);
-    s.addText(c.de, { x: ix + 0.15, y: 5.77, w: iw - 0.3, h: 0.88, fontSize: 14, bold: true, color: WHITE, valign: "top", margin: 0, isTextBox: true });
+  cases.forEach((c, i) => {
+    const x = X0 + i * 4.1, w = 3.93;
+    box(s, x, 1.65, w, 5.15); topbar(s, x, 1.65, w, c.c);
+    label(s, c.k, x + 0.25, 1.9, 2, c.c, 10.5);
+    s.addText(c.t, { x: x + 0.25, y: 2.17, w: w - 0.5, h: 0.4, fontSize: 18, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
+    const ix = x + 0.2, iw = w - 0.4;
+    [[2.7, 1.3, WHITE, BORDER, "Scenario", TEAL, BODY, c.sc, false], [4.07, 1.2, TEAL_T, "BFDDD8", "Think", TEAL, BODY, c.th, false], [5.34, 1.32, NAVY, NAVY, "Decide", MINT, WHITE, c.de, true]].forEach(([y, h, f, l, lab, lc, tc, t, b]) => {
+      s.addShape(pres.shapes.RECTANGLE, { x: ix, y, w: iw, h, fill: { color: f }, line: { color: l, width: 0.75 } });
+      label(s, lab, ix + 0.13, y + 0.06, 2, lc, 9.5);
+      s.addText(t, { x: ix + 0.13, y: y + 0.32, w: iw - 0.26, h: h - 0.38, fontSize: 13.5, bold: b, color: tc, valign: "top", margin: 0, isTextBox: true });
+    });
   });
 }
 
