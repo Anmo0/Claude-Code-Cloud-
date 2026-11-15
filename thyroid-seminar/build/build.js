@@ -345,49 +345,23 @@ divider(4);
 
 divider(5);
 // =====================================================================
-// 12. Clinical examination
+// 12. Examination + laboratory tests
 // =====================================================================
 {
-  const s = content(5, "Clinical examination and neck palpation", "[2] Browse",
-    "Inspect from the front: a thyroid swelling moves up on swallowing (pretracheal fascia). A thyroglossal cyst also moves on tongue protrusion.\n" +
-    "Palpate from behind with the neck slightly flexed: size, surface, consistency, tenderness, mobility, and whether you can get below the lower border (if not, suspect retrosternal extension).\n" +
-    "Examine all cervical node levels systematically.\n" +
-    "Special tests: tracheal position; Pemberton sign for retrosternal goitre (facial plethora on raising both arms); percussion over the manubrium; auscultation for a bruit.\n" +
-    "Document vocal cord function (laryngoscopy) before any thyroid surgery.");
-  const steps = [
-    ["Step 1", "Inspect", TEAL, "Front view; ask the patient to swallow", "Thyroid rises on swallowing; thyroglossal cyst rises on tongue protrusion"],
-    ["Step 2", "Palpate", TEAL, "From behind, neck slightly flexed", "Size, surface, consistency, mobility; can you get below it?"],
-    ["Step 3", "Nodes", RED, "All cervical levels on both sides", "Hard or matted nodes suggest metastasis"],
-    ["Step 4", "Special tests", RED, "Trachea, Pemberton sign, percussion, bruit", "Retrosternal extension; laryngoscopy before surgery"],
-  ];
-  steps.forEach(([k, t, c, how, look], i) => card(s, { x: X0 + i * 3.093, y: 1.7, w: 2.92, h: 4.15, color: c, kicker: k, title: t, rows: [
-    { l: "How", t: how }, { l: "Look for", t: look, b: true } ] }));
-  remember(s, "a hard, fixed nodule with ipsilateral nodes or a hoarse voice is malignant until proven otherwise", 6.12);
-}
-
-// =====================================================================
-// 13. Laboratory tests
-// =====================================================================
-{
-  const s = content(5, "Laboratory tests: function first, then markers", "[8] ATA 2015; [10] ATA MTC 2015",
-    "Serum TSH is the first test for every nodule. If TSH is low, do radionuclide scintigraphy: a hyperfunctioning ('hot') nodule is rarely malignant and does not need FNA.\n" +
-    "Thyroglobulin is not a diagnostic test (it is raised in benign disease); it is used for surveillance after total thyroidectomy, interpreted with anti-thyroglobulin antibodies.\n" +
-    "Calcitonin: marker of medullary carcinoma. Routine screening of all nodules is debated; measure when MTC is suspected. CEA supports staging and follow-up.\n" +
-    "If medullary cancer is diagnosed: germline RET testing, plasma free metanephrines (exclude phaeochromocytoma before surgery), and serum calcium (hyperparathyroidism).\n" +
-    "Molecular testing of indeterminate FNA (for example BRAF, RAS, gene classifiers) can refine risk.");
-  card(s, { x: X0, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "First test", title: "Thyroid function", rows: [
-    { l: "TSH", t: "First for every nodule", b: true },
-    { l: "Low TSH", t: "Isotope scan: 'hot' nodule rarely malignant" },
-    { l: "Free T4 / T3", t: "Most cancers are euthyroid" } ] });
-  card(s, { x: X0 + 4.125, y: 1.7, w: 3.88, h: 4.15, color: RED, kicker: "Tumour markers", title: "Use them correctly", rows: [
-    { l: "Thyroglobulin", t: "Not diagnostic; for follow-up after total thyroidectomy", b: true },
-    { l: "Calcitonin", t: "Medullary carcinoma marker" },
-    { l: "CEA", t: "Medullary staging and follow-up" } ] });
-  card(s, { x: X0 + 8.25, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "If medullary", title: "Before surgery", rows: [
-    { l: "Genetics", t: "Germline RET testing" },
-    { l: "Adrenal", t: "Metanephrines: exclude phaeochromocytoma", b: true },
-    { l: "Calcium", t: "Look for hyperparathyroidism (MEN2A)" } ] });
-  remember(s, "thyroglobulin does not diagnose cancer; it monitors patients after total thyroidectomy", 6.12);
+  const s = content(5, "Workup: examination and laboratory tests", "[2] Browse; [8] ATA 2015; [10] ATA MTC 2015",
+    "Examination: a thyroid swelling moves on swallowing (pretracheal fascia); a thyroglossal cyst also moves on tongue protrusion. Palpate from behind: size, surface, consistency, mobility, lower border (retrosternal extension). Examine all cervical node levels. Check trachea, Pemberton sign, and document vocal cords by laryngoscopy before surgery.\n" +
+    "Laboratory: TSH first. If TSH is low, isotope scan: a 'hot' nodule is rarely malignant. Thyroglobulin is not diagnostic; it is used after total thyroidectomy. Calcitonin and CEA are the medullary markers. If medullary: germline RET, plasma metanephrines (exclude phaeochromocytoma before surgery), serum calcium.");
+  card(s, { x: X0, y: 1.65, w: 5.95, h: 4.2, color: TEAL, kicker: "Clinical examination", title: "Neck palpation", rows: [
+    { l: "Inspect", t: "Moves on swallowing; thyroglossal cyst moves with tongue" },
+    { l: "Palpate", t: "From behind: size, consistency, mobility, lower border" },
+    { l: "Nodes", t: "All cervical levels: hard or matted nodes", b: true },
+    { l: "Special", t: "Trachea, Pemberton sign; laryngoscopy before surgery" } ] });
+  card(s, { x: X0 + 6.18, y: 1.65, w: 5.95, h: 4.2, color: RED, kicker: "Laboratory tests", title: "Function first, then markers", rows: [
+    { l: "TSH", t: "First test; low TSH → isotope scan ('hot' = rarely cancer)", b: true },
+    { l: "Thyroglobulin", t: "Not diagnostic; for follow-up after thyroidectomy" },
+    { l: "Calcitonin · CEA", t: "Medullary carcinoma markers" },
+    { l: "If medullary", t: "RET testing; metanephrines; calcium" } ] });
+  remember(s, "a hard, fixed nodule with nodes or a hoarse voice is malignant until proven otherwise", 6.12);
 }
 
 // =====================================================================
@@ -507,7 +481,37 @@ divider(6);
     { l: "Central (VI)", t: "Therapeutic for involved nodes; routine in medullary" },
     { l: "Prophylactic", t: "Consider in T3–T4 or lateral node disease" },
     { l: "Lateral (II–V)", t: "Only for proven lateral nodes", b: true } ] });
-  remember(s, "RLN palsy (bilateral = stridor) · hypocalcaemia (check PTH) · haematoma: open the wound at the bedside", 6.12, "Complications: ");
+  remember(s, "pre-op laryngoscopy and node-mapping US; intra-op identify the RLN and parathyroids (± nerve monitoring)", 6.12, "Plan: ");
+}
+
+// =====================================================================
+// 17b. Complications of thyroid surgery
+// =====================================================================
+{
+  const s = content(6, "Complications of thyroid surgery", "[1] Bailey & Love; [8] ATA 2015",
+    "Haematoma: usually within the first 24 hours; a tense swelling with stridor or distress compresses the airway (venous and lymphatic congestion of the larynx). Open the wound at the bedside (skin and strap muscle sutures), then return to theatre. Incidence is about 1%.\n" +
+    "Recurrent laryngeal nerve: unilateral palsy gives hoarseness and a weak cough or aspiration; bilateral palsy gives stridor after extubation and may need reintubation or tracheostomy. Most palsies are temporary; permanent palsy is about 1% in experienced hands. Document cords by laryngoscopy before and after surgery.\n" +
+    "External branch of the superior laryngeal nerve: loss of high-pitched voice and voice fatigue (important for singers).\n" +
+    "Hypocalcaemia from parathyroid injury or devascularisation: perioral tingling, cramps, Chvostek and Trousseau signs. Transient hypocalcaemia is common after total thyroidectomy (up to about a quarter of patients); permanent hypoparathyroidism is about 1–3%. Check post-operative PTH or calcium; give oral calcium ± calcitriol; IV calcium gluconate if severe.\n" +
+    "Others: hypothyroidism (lifelong levothyroxine after total thyroidectomy), wound infection and seroma, chyle leak after left lateral neck dissection (thoracic duct), and rarely thyroid storm in an uncontrolled hyperthyroid patient.\n" +
+    "Percentages are approximate and vary by surgeon volume and series.");
+  card(s, { x: X0, y: 1.65, w: 2.92, h: 4.25, color: RED, kicker: "Hours · emergency", title: "Haematoma", rows: [
+    { l: "When", t: "First 24 hours; about 1%" },
+    { l: "Presents", t: "Tense neck swelling, stridor" },
+    { l: "Action", t: "Open the wound at the bedside, then theatre", b: true } ] });
+  card(s, { x: X0 + 3.073, y: 1.65, w: 2.92, h: 4.25, color: RED, kicker: "Nerves", title: "RLN · EBSLN", rows: [
+    { l: "Unilateral RLN", t: "Hoarseness, weak cough" },
+    { l: "Bilateral RLN", t: "Stridor: reintubate / tracheostomy", b: true },
+    { l: "EBSLN", t: "Loss of high-pitched voice" } ] });
+  card(s, { x: X0 + 6.146, y: 1.65, w: 2.92, h: 4.25, color: ORANGE, kicker: "Days · parathyroids", title: "Hypocalcaemia", rows: [
+    { l: "Presents", t: "Tingling, cramps; Chvostek, Trousseau" },
+    { l: "Check", t: "Post-op PTH or calcium", b: true },
+    { l: "Treat", t: "Oral calcium ± calcitriol; IV if severe" } ] });
+  card(s, { x: X0 + 9.219, y: 1.65, w: 2.92, h: 4.25, color: TEAL, kicker: "Other", title: "Less common", rows: [
+    { l: "Long term", t: "Hypothyroidism: lifelong levothyroxine" },
+    { l: "Neck dissection", t: "Chyle leak (left side)" },
+    { l: "Wound", t: "Infection, seroma" } ] });
+  remember(s, "laryngoscopy before and after surgery; permanent RLN palsy ~1%, permanent hypoparathyroidism ~1–3%", 6.12, "Consent: ");
 }
 
 // =====================================================================
