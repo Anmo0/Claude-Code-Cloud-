@@ -179,6 +179,7 @@ divider(1);
     "The gland lies at C5–T1, wrapped in pretracheal fascia, so it moves up on swallowing.\n" +
     "Arteries: superior thyroid (first branch of the external carotid; runs with the external branch of the superior laryngeal nerve) and inferior thyroid (thyrocervical trunk; closely related to the recurrent laryngeal nerve). A thyroidea ima artery is occasionally present.\n" +
     "Veins: superior and middle drain to the internal jugular; inferior veins drain to the brachiocephalic veins.\n" +
+    "Surgical landmarks: the recurrent laryngeal nerve is most at risk where it passes close to the ligament of Berry, and the tubercle of Zuckerkandl usually points to it; the external branch of the superior laryngeal nerve runs with the superior pole vessels, so they are ligated close to the gland. Superior parathyroids are usually posterior at the level of the cricoid; inferior ones are more variable.\n" +
     "Lymphatics: first to the central compartment (level VI: prelaryngeal, pretracheal, paratracheal), then to the lateral neck (levels II–V) and the superior mediastinum (level VII). This explains where papillary and medullary cancers spread.");
   box(s, X0, 1.65, 7.35, 3.56);
   s.addImage({ path: path.join(__dirname, "anatomy.png"), x: X0 + 0.02, y: 1.67, w: 7.31, h: 3.502, altText: "Labelled anterior view of the thyroid with arteries, veins, recurrent laryngeal nerve and parathyroids" });
@@ -195,7 +196,7 @@ divider(1);
     { l: "Arterial", t: "Superior thyroid a. (ECA) and inferior thyroid a. (thyrocervical trunk)" },
     { l: "Venous", t: "Superior and middle → IJV; inferior → brachiocephalic v." },
     { l: "Lymphatic", t: "Central level VI first → lateral II–V and mediastinum VII", b: true },
-    { l: "At risk", t: "Recurrent and external laryngeal nerves; parathyroids" } ] });
+    { l: "Surgical landmarks", t: "RLN at Berry's ligament and under Zuckerkandl's tubercle; EBSLN at the upper pole", b: true } ] });
 }
 
 // =====================================================================
@@ -239,7 +240,7 @@ divider(2);
 {
   const s = content(2, "Classification by behaviour and cell of origin", "[5] WHO 2022; [1] Bailey & Love; [10] ATA MTC 2015",
     "Benign: follicular adenoma (including oncocytic/Hürthle adenoma and the 'hot' toxic adenoma) and cysts. WHO 2022 lists NIFTP as a low-risk neoplasm, treated by lobectomy alone. Colloid nodules and multinodular goitre are hyperplasia, not neoplasms.\n" +
-    "Malignant, follicular-cell derived (about 95%): papillary (~80%), follicular (~10%), oncocytic carcinoma, poorly differentiated and anaplastic (~1–2%).\n" +
+    "Malignant, follicular-cell derived (about 95%): papillary (~80%), follicular (~10%), oncocytic carcinoma, high-grade carcinoma (WHO 2022: poorly differentiated and differentiated high-grade) and anaplastic (~1–2%). WHO 2022 also renamed Hürthle cell tumours as oncocytic.\n" +
     "C-cell: medullary (~5%; about 25% hereditary, RET).\n" +
     "Other: primary lymphoma (in Hashimoto thyroiditis) and metastases (kidney, lung, breast, melanoma). Percentages are approximate.");
   s.addShape(pres.shapes.OVAL, { x: 0.45, y: 3.05, w: 2.35, h: 2.35, fill: { color: WHITE }, line: { color: "7FB3AE", width: 1.5 } });
@@ -247,7 +248,7 @@ divider(2);
   s.addText("Thyroid\ntumours", { x: 0.6, y: 3.2, w: 2.05, h: 2.05, fontFace: HEAD, fontSize: 19, bold: true, color: WHITE, align: "center", valign: "middle", margin: 0, isTextBox: true });
   const groups = [
     { name: "Benign", sub: "no invasion", color: TEAL, tint: TEAL_T, items: [["Follicular adenoma", "incl. oncocytic, toxic"], ["Cysts", "pure cyst: very low risk"], ["NIFTP", "low-risk neoplasm"]] },
-    { name: "Follicular-cell", sub: "malignant, ~95%", color: RED, tint: RED_T, items: [["Papillary carcinoma", "~80%", true], ["Follicular carcinoma", "~10%"], ["Oncocytic carcinoma", ""], ["Poorly diff. · Anaplastic", "anaplastic ~1–2%"]] },
+    { name: "Follicular-cell", sub: "malignant, ~95%", color: RED, tint: RED_T, items: [["Papillary carcinoma", "~80%", true], ["Follicular carcinoma", "~10%"], ["Oncocytic carcinoma", ""], ["High-grade · Anaplastic", "anaplastic ~1–2%"]] },
     { name: "C-cell", sub: "malignant", color: ORANGE, tint: "F8EDE3", items: [["Medullary carcinoma", "~5%; 25% hereditary"]] },
     { name: "Other", sub: "malignant", color: NAVY, tint: "E8ECF2", items: [["Lymphoma · Metastases", "Hashimoto; kidney, lung"]] },
   ];
@@ -394,7 +395,7 @@ divider(5);
 // =====================================================================
 {
   const s = content(5, "Imaging: ultrasound first, the rest by question", "[6] ACR TI-RADS; [8] ATA 2015",
-    "Ultrasound is the first-line test for every nodule and for the cervical nodes. ACR TI-RADS adds points for composition, echogenicity, shape, margin and echogenic foci; the level and the nodule size decide FNA or follow-up.\n" +
+    "Ultrasound is the first-line test for every nodule and for the cervical nodes. Before surgery for any confirmed or suspected cancer, a dedicated neck ultrasound maps the central and lateral nodes: it changes the operation (ATA 2015). ACR TI-RADS adds points for composition, echogenicity, shape, margin and echogenic foci; the level and the nodule size decide FNA or follow-up.\n" +
     "TR3: FNA if ≥2.5 cm, follow if ≥1.5 cm. TR4: FNA if ≥1.5 cm, follow if ≥1.0 cm. TR5: FNA if ≥1.0 cm, follow if ≥0.5 cm. TR1 and TR2: no FNA.\n" +
     "CT or MRI: retrosternal extension, invasion of trachea or oesophagus, bulky or mediastinal nodes. Iodinated contrast can delay radioiodine therapy, so plan it.\n" +
     "Radionuclide scan (Tc-99m or I-123): only when TSH is low, to find a hot nodule.\n" +
@@ -414,9 +415,10 @@ divider(5);
     s.addText(a, { x: tx + 4.85, y, w: 1.8, h: 0.52, fontSize: 14, bold: i > 1, color: i > 1 ? NAVY : BODY, valign: "middle", margin: 0, isTextBox: true });
   });
   card(s, { x: 7.75, y: 1.7, w: 4.98, h: 4.15, color: TEAL, kicker: "Beyond ultrasound", title: "When to add", rows: [
-    { l: "CT / MRI", t: "Retrosternal, invasive or bulky nodal disease" },
-    { l: "Isotope scan", t: "Only if TSH is low: hot vs cold", b: true },
-    { l: "FDG-PET", t: "Anaplastic staging; iodine-refractory disease" } ] });
+    { l: "Pre-op neck US", t: "Map central and lateral nodes in every cancer", b: true },
+    { l: "CT / MRI", t: "Retrosternal, invasive or bulky nodes" },
+    { l: "Isotope scan", t: "Only if TSH is low: hot vs cold" },
+    { l: "FDG-PET", t: "Anaplastic; iodine-refractory disease" } ] });
   remember(s, "iodinated CT contrast can delay radioiodine therapy; request it only when it changes management", 6.12, "Caution: ");
 }
 
@@ -464,9 +466,9 @@ divider(6);
     "Lymphoma: chemotherapy with or without radiotherapy; surgery is not the treatment.");
   const rows = [
     ["Tumour", "Core treatment", "Add-on", true],
-    ["Benign nodule", "Observe with US follow-up; surgery if compressive, growing or indeterminate", "Thermal ablation in selected cases", TEAL],
-    ["Differentiated", "Lobectomy or total thyroidectomy", "Radioiodine and TSH suppression by risk", TEAL],
-    ["Medullary", "Total thyroidectomy + central neck dissection", "No radioiodine; RET-targeted drugs if advanced", ORANGE],
+    ["Benign nodule", "Observe with US follow-up; surgery if compressive, growing or indeterminate", "Thermal ablation; no levothyroxine suppression", TEAL],
+    ["Differentiated", "Lobectomy or total; active surveillance for low-risk microcarcinoma", "Radioiodine and TSH suppression by risk", TEAL],
+    ["Medullary", "Total thyroidectomy + central neck dissection", "Prophylactic surgery in RET carriers; no radioiodine", ORANGE],
     ["Anaplastic", "Urgent MDT; resect only if feasible", "BRAF-targeted therapy, radiotherapy, palliation", RED],
     ["Lymphoma", "Chemotherapy ± radiotherapy", "Surgery only for diagnosis or airway", TEAL],
   ];
@@ -487,23 +489,25 @@ divider(6);
 // =====================================================================
 {
   const s = content(6, "Surgery: lobectomy, thyroidectomy, neck dissection", "[8] ATA 2015; [1] Bailey & Love",
-    "Lobectomy: low-risk differentiated cancer under 1 cm without extrathyroidal extension or nodes; acceptable for 1–4 cm low-risk tumours; diagnostic lobectomy for indeterminate nodules.\n" +
+    "Papillary microcarcinoma (< 1 cm) without extrathyroidal extension or nodes: lobectomy, or active surveillance in selected patients (ATA 2015). Lobectomy is acceptable for 1–4 cm low-risk tumours; diagnostic lobectomy for indeterminate nodules.\n" +
+    "Completion thyroidectomy: offered when the final histology after lobectomy shows higher-risk features (e.g. gross extrathyroidal extension, extensive vascular invasion, nodal disease) or when radioiodine becomes indicated.\n" +
+    "Technique: identify and preserve the recurrent laryngeal nerve and parathyroids; intraoperative nerve monitoring is a useful adjunct.\n" +
     "Total thyroidectomy: tumour > 4 cm, gross extrathyroidal extension, clinical nodal or distant metastases, medullary carcinoma, and when radioiodine is planned.\n" +
     "Neck dissection: therapeutic central (level VI) dissection for clinically involved nodes; prophylactic central dissection may be considered for advanced primaries (T3–T4) or clinical lateral nodes; lateral compartmental dissection (II–V) for biopsy-proven lateral nodes. Routine central dissection in medullary carcinoma.\n" +
-    "Complications to consent for: recurrent laryngeal nerve palsy, hypocalcaemia from hypoparathyroidism, neck haematoma (an airway emergency: open the wound at the bedside), and external branch of the superior laryngeal nerve injury (loss of high-pitched voice).");
+    "Complications to consent for: recurrent laryngeal nerve palsy, hypocalcaemia from hypoparathyroidism, neck haematoma (an airway emergency: open the wound at the bedside), and external branch of the superior laryngeal nerve injury (loss of high-pitched voice). Bilateral nerve palsy presents with stridor after extubation. Post-operative PTH or calcium guides calcium and vitamin D replacement.");
   card(s, { x: X0, y: 1.7, w: 3.88, h: 4.15, color: TEAL, kicker: "Option 1", title: "Lobectomy", rows: [
-    { l: "Low-risk DTC", t: "< 1 cm without ETE or nodes", b: true },
-    { l: "1–4 cm", t: "Lobectomy or total if low risk" },
-    { l: "Diagnostic", t: "Indeterminate (Bethesda III–IV)" } ] });
+    { l: "< 1 cm, low risk", t: "Lobectomy, or active surveillance", b: true },
+    { l: "1–4 cm, low risk", t: "Lobectomy or total thyroidectomy" },
+    { l: "Completion", t: "If histology upstages after lobectomy" } ] });
   card(s, { x: X0 + 4.125, y: 1.7, w: 3.88, h: 4.15, color: RED, kicker: "Option 2", title: "Total thyroidectomy", rows: [
     { l: "Tumour", t: "> 4 cm or gross extrathyroidal extension", b: true },
     { l: "Spread", t: "Clinical nodes or distant metastases" },
-    { l: "Other", t: "Medullary cancer; radioiodine planned" } ] });
+    { l: "Other", t: "Medullary cancer; RAI planned; bilateral disease" } ] });
   card(s, { x: X0 + 8.25, y: 1.7, w: 3.88, h: 4.15, color: RED, kicker: "Nodes", title: "Neck dissection", rows: [
     { l: "Central (VI)", t: "Therapeutic for involved nodes; routine in medullary" },
     { l: "Prophylactic", t: "Consider in T3–T4 or lateral node disease" },
     { l: "Lateral (II–V)", t: "Only for proven lateral nodes", b: true } ] });
-  remember(s, "nerve palsy, hypocalcaemia, haematoma (airway emergency), superior laryngeal nerve injury", 6.12, "Complications: ");
+  remember(s, "RLN palsy (bilateral = stridor) · hypocalcaemia (check PTH) · haematoma: open the wound at the bedside", 6.12, "Complications: ");
 }
 
 // =====================================================================
