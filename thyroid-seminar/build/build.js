@@ -66,8 +66,8 @@ function divider(secIdx) {
 function content(secIdx, title, sources, notes) {
   const s = pres.addSlide({ masterName: "CONTENT", sectionTitle: SECTIONS[secIdx] });
   s.addText(title, { placeholder: "title" });
-  if (sources) s.addText(`Sources: ${sources}`, { x: X0, y: 6.98, w: 9, h: 0.3, fontSize: 10, color: MUTED, margin: 0, isTextBox: true });
-  if (notes) s.addNotes(notes);
+  // per-slide source lines removed at user request; sources stay in speaker notes
+  if (notes || sources) s.addNotes((notes || "") + (sources ? `\n\nSources: ${sources}` : ""));
   return s;
 }
 function box(s, x, y, w, h, fill = WHITE, line = BORDER) {
