@@ -1,0 +1,4 @@
+interface:
+  display_name: "/medical-presentation-principles"
+  short_description: "Create evidence-grounded medical presentations with clear, polished slides."
+  default_prompt: "Use $medical-presentation-principles to create or revise this medical presentation."
