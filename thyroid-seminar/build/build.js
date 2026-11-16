@@ -473,10 +473,18 @@ divider(7);
 // =====================================================================
 {
   const s = content(7, "Prognosis: follow-up, risk factors and survival", "[10] ATA 2015; [1] ATA 2025; [11] AJCC 8th; [12] SEER; [13] Roman 2006; [14] ATA ATC 2021",
-`SCRIPT (about 60 seconds)
-"Prognosis in one slide. For differentiated thyroid cancer we follow thyroglobulin with its antibodies, plus neck ultrasound. At six to twelve months each patient is classed by response: an excellent response carries a recurrence risk of only one to four percent, while a structural incomplete response carries the highest risk. Medullary cancer is different: we follow calcitonin and CEA, and ten-year survival falls from ninety-six percent when localised to forty percent with distant spread.
-The main prognostic factors are age, with fifty-five years as the AJCC cut-off, distant metastases, gross extrathyroidal extension, aggressive histology, and incomplete resection.
-Overall survival is excellent: in SEER data, which is mostly differentiated cancer, five-year survival is almost one hundred percent for localised and regional disease, but about fifty percent with distant metastases. Anaplastic cancer is the exception, with a median survival of about five months."
+`SCRIPT (about 80 seconds — speak it, don't read it)
+"Okay, so the patient has had their treatment. Now the real question is: how are they going to do, and how do we keep an eye on them?
+
+For differentiated cancer, papillary and follicular, follow-up is actually quite logical. Once the thyroid is out, the only thing in the body that makes thyroglobulin is thyroid tissue. So if Tg starts climbing, something is still there. We always send it with the antibodies, because the antibodies can hide it and give us a falsely reassuring number. Add a neck ultrasound, and at around six to twelve months we put the patient into one of four groups. [point to the left column] Excellent response is what we want: recurrence only about one to four percent. Structural incomplete, where we can actually see disease, is the worst. The two in the middle basically mean: keep watching.
+
+Medullary is different. It doesn't come from follicular cells, so Tg is useless; we follow calcitonin and CEA instead.
+
+What predicts outcome? If I had to pick one thing, it's age, with fifty-five as the AJCC cut-off. Then distant spread, gross invasion, aggressive histology, and whether we got it all out.
+
+[point to the chart] And the good news: localized and regional disease sit at almost a hundred percent. It only really drops with distant spread. Anaplastic is the exception, about five months.
+
+So the take-home: patients rarely die of thyroid cancer, but it can come back, usually in the neck, and that's why we follow them for years."
 
 BACKUP Q&A (not read aloud)
 Q: Thyroglobulin cut-offs for an excellent response?
@@ -536,11 +544,18 @@ A: Low-risk patients with an excellent response can stop ultrasound after 5–8 
 // =====================================================================
 {
   const s = content(7, "Surgical Outcomes & Post-op Morbidity", "[17] Bailey & Love; [1] ATA 2025; [18] Adam 2017",
-`SCRIPT (about 60 seconds)
-"From a surgeon's point of view, outcome also means what the operation costs the patient. Nerve injury first: recurrent laryngeal nerve palsy is transient in about three to eight percent and permanent in under one to two percent; bilateral injury threatens the airway. Injury to the external branch of the superior laryngeal nerve costs the high-pitched voice.
-Metabolic and airway: transient hypocalcaemia is the commonest complication, in ten to thirty percent after total thyroidectomy, but permanent hypoparathyroidism is under one to two percent. A neck haematoma is rare, about one percent, but it is a life-threatening airway emergency that needs immediate evacuation.
-Oncologic control: a complete R0 resection is the strongest factor the surgeon controls against recurrence, and the ATA risk category then guides radioiodine and TSH suppression.
-Finally, complication rates fall in the hands of high-volume surgeons, above about twenty-five thyroidectomies a year."
+`SCRIPT (about 70 seconds)
+"Since we're a surgery department, I want to show the other side of outcome: what the operation itself can cost the patient.
+
+There are two nerves we really worry about. The recurrent laryngeal nerve: if it's injured, the patient wakes up hoarse. Most of the time it's temporary, three to eight percent, and it recovers; permanent damage is under one to two percent. But if both sides are injured, it becomes an airway problem. The external branch of the superior laryngeal is less dramatic, but a teacher or a singer will tell you they've lost their high notes.
+
+Then calcium. The parathyroids are tiny and sit right behind the thyroid, so after a total thyroidectomy it's very common for calcium to drop for a few days, in up to a third of patients. Permanent problems are rare.
+
+And the one complication everyone has to remember: a neck hematoma. It's rare, about one percent, but it can close the airway, so you open the wound right there at the bedside. You don't wait for theatre.
+
+On the cancer side, the most important thing the surgeon controls is getting it all out: an R0 resection. After that, the ATA risk group decides on radioiodine and how much we suppress TSH.
+
+[point to the banner] And one thing I found really interesting: surgeons who do more than about twenty-five thyroidectomies a year have clearly fewer complications. Volume matters."
 
 BACKUP Q&A (not read aloud)
 Q: How do you manage a post-thyroidectomy haematoma with stridor?
@@ -575,11 +590,16 @@ divider(8);
 // =====================================================================
 {
   const s = content(8, "Case discussion: three nodules, three outcomes", "[16] Bethesda 2023; [10] ATA 2015; [15] ATA MTC 2015; [14] ATA ATC 2021",
-`SCRIPT (about 60 seconds)
-"Three short illustrative cases.
-First, a thirty-four-year-old woman with a two-centimetre TI-RADS five nodule; FNA is Bethesda six: papillary cancer. She is under fifty-five, so stage one and low risk. Thyroidectomy, no routine radioiodine; at one year thyroglobulin is undetectable: an excellent response.
-Second, a forty-two-year-old man with a nodule, a neck node, diarrhoea and a family history of thyroid cancer and severe hypertension: medullary cancer, probably MEN2A. Exclude phaeochromocytoma first, then total thyroidectomy with neck dissection, and follow calcitonin and CEA.
-Third, a seventy-four-year-old woman with a hard mass growing over three weeks and hoarseness. Think anaplastic cancer, but exclude lymphoma by core biopsy and test BRAF. She needs airway assessment, urgent multidisciplinary care and early palliative input. Thank you."
+`SCRIPT (about 80 seconds)
+"Let me finish with three quick patients, just to bring it all together. They're illustrative cases.
+
+First, a thirty-four-year-old woman with a two-centimetre nodule. The ultrasound looks worrying, TI-RADS five, and the FNA comes back Bethesda six: papillary cancer. She's under fifty-five, so stage one and low risk. She has her operation with no routine radioiodine, and a year later her thyroglobulin is undetectable. Excellent response. That's the typical, happy thyroid cancer story.
+
+Second, a forty-two-year-old man: a nodule, a node in the neck, diarrhea, and his father had thyroid cancer and episodes of very high blood pressure. That should ring a bell: medullary cancer, probably MEN2A. And here's the trap. Before we touch the thyroid, we have to rule out a pheochromocytoma, or he can crash on the table. Then a total thyroidectomy with neck dissection, and we follow him with calcitonin and CEA.
+
+Third, a seventy-four-year-old lady with a hard neck mass that grew in three weeks. She's hoarse and short of breath. We think anaplastic, but we have to rule out lymphoma first, because lymphoma is very treatable. So we take a core biopsy and check BRAF. Airway first, an urgent team discussion, and honest, early palliative care.
+
+Three nodules, three completely different outcomes. Thank you, I'm happy to take any questions."
 
 BACKUP Q&A (not read aloud)
 Q: Case 1: why no routine radioiodine?
