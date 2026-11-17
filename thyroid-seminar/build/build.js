@@ -386,9 +386,124 @@ divider(3);
 }
 
 divider(4);
-blank(4);
+// ===== Objectives 5 and 6 (teammate content, rebuilt from the final PDF; source lines removed) =====
+function subtitle(s, t) {
+  s.addText(t, { x: X0, y: 1.32, w: 11, h: 0.3, fontSize: 12.5, color: TEAL, charSpacing: 1, margin: 0, valign: "middle", isTextBox: true });
+}
+function banner(s, lead, t, y = 6.3, h = 0.58) {
+  box(s, X0, y, CW, h, NAVY, NAVY);
+  s.addText([{ text: lead + "  /  ", options: { bold: true, color: WHITE } }, { text: t, options: { bold: true, color: WHITE } }],
+    { x: X0 + 0.25, y, w: CW - 0.4, h, fontSize: 15, valign: "middle", margin: 0, isTextBox: true });
+}
+function footnote(s, t) {
+  s.addText(t, { x: X0, y: 6.93, w: 10.5, h: 0.28, fontSize: 10, color: MUTED, margin: 0, valign: "middle", isTextBox: true });
+}
+function sqBullets(items, size) {
+  return items.map((t, i) => ({ text: t, options: { bullet: { code: "25AA", indent: 16 }, fontSize: size, color: BODY, breakLine: i < items.length - 1, paraSpaceAfter: 12 } }));
+}
+
+// ---- Slide: Clinical Presentation of Thyroid Tumors ----
+{
+  const s = content(4, "Clinical Presentation of Thyroid Tumors", null, "Teammate content (Objective 5). Sources: [1] ATA 2025; [2] ETA 2023; [21] Moorthy 2026.");
+  subtitle(s, "COMMON FINDINGS  /  SUSPICIOUS CLUES  /  LOCAL INVASION");
+  [["COMMON PRESENTATION", TEAL, ["Painless thyroid nodule or neck swelling", "Frequently found incidentally", "Most patients are euthyroid", "Mass may move with swallowing"]],
+   ["MALIGNANCY WARNING SIGNS", RED, ["Firm or fixed mass; progressive growth", "Suspicious cervical lymph nodes", "Persistent hoarseness or voice change", "Childhood irradiation or thyroid cancer family history"]],
+   ["LOCAL / ADVANCED DISEASE", ORANGE, ["Dysphagia: possible esophageal involvement", "Dyspnea or stridor: airway compromise", "Voice change: possible nerve invasion", "Pain can occur but is nonspecific"]]].forEach(([h, c, items], i) => {
+    const x = X0 + i * 4.1, w = 3.93, y = 1.78, hh = 3.5;
+    box(s, x, y, w, hh); topbar(s, x, y, w, c);
+    s.addText(h, { x: x + 0.25, y: y + 0.25, w: w - 0.4, h: 0.4, fontSize: 16, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
+    s.addText(sqBullets(items, 14.5), { x: x + 0.25, y: y + 0.85, w: w - 0.4, h: hh - 1.0, valign: "top", margin: 0, isTextBox: true });
+  });
+  box(s, X0, 5.42, CW, 0.78, TEAL_T, "BFDDD8");
+  s.addText([{ text: "CLINICAL ACTION", options: { bold: true, color: TEAL, fontSize: 14, breakLine: true } }, { text: "Abnormal voice: laryngeal examination when indicated.", options: { color: BODY, fontSize: 13.5 } }], { x: X0 + 0.25, y: 5.42, w: 5.8, h: 0.78, valign: "middle", margin: 0, isTextBox: true });
+  s.addText([{ text: "AIRWAY RED FLAG", options: { bold: true, color: RED, fontSize: 14, breakLine: true } }, { text: "Stridor or respiratory distress needs urgent assessment.", options: { color: BODY, fontSize: 13.5 } }], { x: X0 + 6.35, y: 5.42, w: 5.6, h: 0.78, valign: "middle", margin: 0, isTextBox: true });
+  banner(s, "REMEMBER", "Rapid swelling can also reflect hemorrhage into a benign nodule.");
+}
+
+// ---- Slide: Clinical Features by Tumor Type ----
+{
+  const s = content(4, "Clinical Features by Tumor Type", null, "Teammate content (Objective 5). Sources: [2] ETA 2023; [15] ATA MTC 2015; [21] Moorthy 2026.");
+  subtitle(s, "PRESENTATION VARIES WITH TUMOR BIOLOGY AND SPREAD");
+  const rows = [
+    ["Papillary carcinoma", "Usually painless; a cervical node can be the first sign.", "Lymphatic spread to neck nodes", TEAL],
+    ["Follicular carcinoma", "Usually solitary painless nodule; distant symptoms are later.", "Blood-borne spread to bone/lung", TEAL],
+    ["Medullary carcinoma", "Nodule or neck nodes; diarrhea/flushing are uncommon.", "May be hereditary (MEN type 2)", TEAL],
+    ["Anaplastic carcinoma", "Rapidly enlarging hard mass with compressive symptoms.", "Urgent airway assessment", RED],
+    ["Thyroid lymphoma", "Rapidly enlarging thyroid; may cause dysphagia or dyspnea.", "Often with Hashimoto thyroiditis", RED],
+  ];
+  const colX = [X0 + 0.25, X0 + 3.0, X0 + 8.4], colW = [2.7, 5.3, 3.6];
+  box(s, X0, 1.78, CW, 0.5, NAVY, NAVY);
+  ["TUMOR TYPE", "TYPICAL PRESENTATION", "IMPORTANT CLUE"].forEach((t, j) => s.addText(t, { x: colX[j], y: 1.78, w: colW[j], h: 0.5, fontSize: 13, bold: true, color: WHITE, valign: "middle", margin: 0, isTextBox: true }));
+  rows.forEach(([a, b, c, col], i) => {
+    const y = 2.28 + i * 0.6;
+    box(s, X0, y, CW, 0.6, i % 2 ? ROWALT : WHITE, BORDER);
+    s.addShape(pres.shapes.RECTANGLE, { x: X0, y, w: 0.08, h: 0.6, fill: { color: col }, line: { type: "none" } });
+    [a, b, c].forEach((t, j) => s.addText(t, { x: colX[j], y, w: colW[j], h: 0.6, fontSize: j === 0 ? 14.5 : 13.5, bold: j === 0, color: j === 0 ? NAVY : BODY, valign: "middle", margin: 0, isTextBox: true }));
+  });
+  box(s, X0, 5.3, CW, 0.5, "F6ECEA", "F6ECEA");
+  s.addText("MEN type 2 = multiple endocrine neoplasia type 2.  Suspected thyroid lymphoma may need core biopsy.", { x: X0 + 0.25, y: 5.3, w: CW - 0.4, h: 0.5, fontSize: 13, color: BODY, valign: "middle", margin: 0, isTextBox: true });
+  banner(s, "CLINICAL TRAP", "Rapid growth: consider anaplastic cancer, lymphoma, or nodule hemorrhage.", 5.98, 0.6);
+}
+
 divider(5);
-blank(5);
+// ---- Slide: Diagnostic Approach to a Thyroid Nodule ----
+{
+  const s = content(5, "Diagnostic Approach to a Thyroid Nodule", null, "Teammate content (Objective 6). Sources: [1] ATA 2025; [2] ETA 2023; [15] ATA MTC 2015; [21] Moorthy 2026.");
+  subtitle(s, "INITIAL EVALUATION  /  FUNCTION  /  STRUCTURAL RISK  /  TARGETED TESTS");
+  const sub = (x, y, w, h, fill, head, headColor, lines) => {
+    box(s, x, y, w, h, fill, fill);
+    const runs = [{ text: head, options: { bold: true, color: headColor, fontSize: 14.5, breakLine: true } }];
+    lines.forEach((l, i) => runs.push({ text: l, options: { color: BODY, fontSize: 13, breakLine: i < lines.length - 1, paraSpaceAfter: 3 } }));
+    s.addText(runs, { x: x + 0.15, y, w: w - 0.3, h, valign: "middle", margin: 0, isTextBox: true });
+  };
+  const lx = X0, lw = 5.85, rx = X0 + 6.05, rw = 6.08, y0 = 1.78, hh = 3.35;
+  box(s, lx, y0, lw, hh); topbar(s, lx, y0, lw, TEAL);
+  s.addText("1. FIRST-LINE EVALUATION", { x: lx + 0.22, y: y0 + 0.2, w: lw - 0.4, h: 0.38, fontSize: 16, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
+  sub(lx + 0.22, y0 + 0.68, lw - 0.44, 0.78, "EEF4F4", "HISTORY + EXAMINATION", NAVY, ["Growth, risk factors, voice, compression and neck nodes"]);
+  sub(lx + 0.22, y0 + 1.54, lw - 0.44, 0.78, "EEF4F4", "NECK ULTRASOUND", NAVY, ["Nodule morphology, size and central/lateral neck nodes"]);
+  sub(lx + 0.22, y0 + 2.4, lw - 0.44, 0.78, "EEF4F4", "SERUM TSH", NAVY, ["Thyroid-stimulating hormone assesses function"]);
+  box(s, rx, y0, rw, hh); topbar(s, rx, y0, rw, ORANGE);
+  s.addText("2. INTERPRET TSH + ULTRASOUND", { x: rx + 0.22, y: y0 + 0.2, w: rw - 0.4, h: 0.38, fontSize: 16, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
+  sub(rx + 0.22, y0 + 0.68, rw - 0.44, 1.18, TEAL_T, "LOW TSH", TEAL, ["Check free thyroxine (T4); free triiodothyronine (T3) if needed.", "Radionuclide scan: a functioning (hot) nodule rarely needs biopsy."]);
+  sub(rx + 0.22, y0 + 1.96, rw - 0.44, 1.22, "F7F1EA", "NORMAL / HIGH TSH", NAVY, ["Ultrasound risk category + size determine needle aspiration.", "If high TSH: free T4; assess thyroid autoimmunity as appropriate."]);
+  box(s, X0, 5.25, CW, 0.95); topbar(s, X0, 5.25, CW, RED);
+  s.addText("3. SELECTIVE ADDITIONAL TESTS", { x: X0 + 0.22, y: 5.38, w: 6, h: 0.3, fontSize: 14.5, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
+  s.addText("Voice abnormality: laryngoscopy. Suspected invasion or bulky nodes: contrast-enhanced CT/MRI.", { x: X0 + 0.22, y: 5.68, w: 5.8, h: 0.48, fontSize: 12.5, color: BODY, margin: 0, valign: "top", isTextBox: true });
+  s.addText("Suspected medullary cancer: calcitonin / CEA; RET genetic testing if diagnosed.", { x: X0 + 6.3, y: 5.68, w: 5.6, h: 0.48, fontSize: 12.5, color: BODY, margin: 0, valign: "top", isTextBox: true });
+  banner(s, "IMPORTANT", "Suspicious neck nodes may need aspiration regardless of nodule size.", 6.3, 0.55);
+  footnote(s, "CT = computed tomography; MRI = magnetic resonance imaging; CEA = carcinoembryonic antigen.");
+}
+
+// ---- Slide: Ultrasound Risk and Bethesda Cytology ----
+{
+  const s = content(5, "Ultrasound Risk and Bethesda Cytology", null, "Teammate content (Objective 6). Sources: [2] ETA 2023; [16] Bethesda 2023; [20] ACR TI-RADS; [21] Moorthy 2026.");
+  subtitle(s, "AMERICAN COLLEGE OF RADIOLOGY TI-RADS  /  2023 BETHESDA SYSTEM");
+  const lx = X0, lw = 5.85, rx = X0 + 6.05, rw = 6.08, y0 = 1.78, hh = 3.55;
+  const t = (x, y, colW, rows, rh, firstColor) => {
+    rows.forEach((r, i) => {
+      const head = i === 0, w = colW.reduce((a, b) => a + b, 0);
+      box(s, x, y + (head ? 0 : 0.45 + (i - 1) * rh), w, head ? 0.45 : rh, head ? NAVY : (i % 2 ? ROWALT : WHITE), head ? NAVY : (i % 2 ? ROWALT : WHITE));
+      let cx = x;
+      r.forEach((v, j) => {
+        s.addText(v, { x: cx + 0.12, y: y + (head ? 0 : 0.45 + (i - 1) * rh), w: colW[j] - 0.15, h: head ? 0.45 : rh, fontSize: head ? 12 : 13.5, bold: head || j === 0 || (firstColor && j === 2), color: head ? WHITE : (firstColor && j === 2 ? TEAL : (j === 0 ? NAVY : BODY)), valign: "middle", margin: 0, isTextBox: true });
+        cx += colW[j];
+      });
+    });
+  };
+  box(s, lx, y0, lw, hh); topbar(s, lx, y0, lw, TEAL);
+  s.addText("ACR TI-RADS: WHEN TO SAMPLE?", { x: lx + 0.22, y: y0 + 0.2, w: lw - 0.4, h: 0.36, fontSize: 15.5, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
+  t(lx + 0.22, y0 + 0.65, [1.75, 1.8, 1.86], [["CATEGORY", "ASPIRATE (FNA)", "US FOLLOW-UP"], ["TR1-TR2", "None", "None"], ["TR3", "at least 2.5 cm", "at least 1.5 cm"], ["TR4", "at least 1.5 cm", "at least 1.0 cm"], ["TR5", "at least 1.0 cm", "at least 0.5 cm"]], 0.48, false);
+  s.addText("High-risk features: punctate foci, irregular margin, taller-than-wide shape or extrathyroidal extension.", { x: lx + 0.22, y: y0 + 3.02, w: lw - 0.44, h: 0.48, fontSize: 12, color: BODY, margin: 0, valign: "top", isTextBox: true });
+  box(s, rx, y0, rw, hh); topbar(s, rx, y0, rw, ORANGE);
+  s.addText("BETHESDA: CYTOLOGY -> DECISION", { x: rx + 0.22, y: y0 + 0.2, w: rw - 0.4, h: 0.36, fontSize: 15.5, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
+  t(rx + 0.22, y0 + 0.65, [0.72, 2.0, 0.72, 2.2], [["CLASS", "CYTOLOGY", "ROM", "USUAL NEXT STEP"], ["I", "Nondiagnostic", "13%", "Repeat FNA"], ["II", "Benign", "4%", "Ultrasound follow-up"], ["III", "Atypia (AUS)", "22%", "Repeat FNA / testing"], ["IV", "Follicular neoplasm", "30%", "Testing / lobectomy"], ["V", "Suspicious", "74%", "Surgical assessment"], ["VI", "Malignant", "97%", "Individualized treatment"]], 0.33, true);
+  s.addText("ROM = mean risk of malignancy in surgically selected adults; AUS = atypia of undetermined significance.", { x: rx + 0.22, y: y0 + 3.13, w: rw - 0.44, h: 0.38, fontSize: 10, color: MUTED, margin: 0, valign: "top", isTextBox: true });
+  box(s, X0, 5.45, CW, 0.5, TEAL_T, TEAL_T);
+  s.addText("FNA = fine-needle aspiration; ultrasound and cytology must agree. Follicular invasion requires histology.", { x: X0 + 0.22, y: 5.45, w: CW - 0.4, h: 0.5, fontSize: 13.5, color: BODY, margin: 0, valign: "middle", isTextBox: true });
+  banner(s, "IMPORTANT", "Benign cytology + highly suspicious ultrasound: consider repeat FNA.", 6.05, 0.58);
+  footnote(s, "TI-RADS = Thyroid Imaging Reporting and Data System.");
+}
+
 divider(6);
 // =====================================================================
 // 13. Management — benign nodules (verbatim)
@@ -473,18 +588,13 @@ divider(7);
 // =====================================================================
 {
   const s = content(7, "Prognosis: follow-up, risk factors and survival", "[10] ATA 2015; [1] ATA 2025; [11] AJCC 8th; [12] SEER; [13] Roman 2006; [14] ATA ATC 2021",
-`SCRIPT (about 80 seconds — speak it, don't read it)
-"Okay, so the patient has had their treatment. Now the real question is: how are they going to do, and how do we keep an eye on them?
-
-For differentiated cancer, papillary and follicular, follow-up is actually quite logical. Once the thyroid is out, the only thing in the body that makes thyroglobulin is thyroid tissue. So if Tg starts climbing, something is still there. We always send it with the antibodies, because the antibodies can hide it and give us a falsely reassuring number. Add a neck ultrasound, and at around six to twelve months we put the patient into one of four groups. [point to the left column] Excellent response is what we want: recurrence only about one to four percent. Structural incomplete, where we can actually see disease, is the worst. The two in the middle basically mean: keep watching.
-
-Medullary is different. It doesn't come from follicular cells, so Tg is useless; we follow calcitonin and CEA instead.
-
-What predicts outcome? If I had to pick one thing, it's age, with fifty-five as the AJCC cut-off. Then distant spread, gross invasion, aggressive histology, and whether we got it all out.
-
-[point to the chart] And the good news: localized and regional disease sit at almost a hundred percent. It only really drops with distant spread. Anaplastic is the exception, about five months.
-
-So the take-home: patients rarely die of thyroid cancer, but it can come back, usually in the neck, and that's why we follow them for years."
+`SCRIPT (about 50 seconds)
+"So, after treatment, how do these patients actually do?
+For papillary and follicular cancer, we follow two things: thyroglobulin with its antibodies, and a neck ultrasound. Once the gland is removed, Tg should be almost zero, so if it rises, something has been left behind.
+At around six to twelve months, we sort patients by their response. An excellent response means only about one to four percent recurrence; visible disease on imaging is the worst group. Medullary cancer is followed differently, with calcitonin and CEA.
+The strongest predictors are age, with fifty-five as the cut-off, distant spread, gross invasion, and incomplete removal.
+[point to the chart] Survival stays close to a hundred percent unless the cancer spreads far. Anaplastic is the exception, at about five months.
+So patients rarely die of it, but it can come back, and that's why follow-up is long."
 
 BACKUP Q&A (not read aloud)
 Q: Thyroglobulin cut-offs for an excellent response?
@@ -544,18 +654,12 @@ A: Low-risk patients with an excellent response can stop ultrasound after 5–8 
 // =====================================================================
 {
   const s = content(7, "Surgical Outcomes & Post-op Morbidity", "[17] Bailey & Love; [1] ATA 2025; [18] Adam 2017",
-`SCRIPT (about 70 seconds)
-"Since we're a surgery department, I want to show the other side of outcome: what the operation itself can cost the patient.
-
-There are two nerves we really worry about. The recurrent laryngeal nerve: if it's injured, the patient wakes up hoarse. Most of the time it's temporary, three to eight percent, and it recovers; permanent damage is under one to two percent. But if both sides are injured, it becomes an airway problem. The external branch of the superior laryngeal is less dramatic, but a teacher or a singer will tell you they've lost their high notes.
-
-Then calcium. The parathyroids are tiny and sit right behind the thyroid, so after a total thyroidectomy it's very common for calcium to drop for a few days, in up to a third of patients. Permanent problems are rare.
-
-And the one complication everyone has to remember: a neck hematoma. It's rare, about one percent, but it can close the airway, so you open the wound right there at the bedside. You don't wait for theatre.
-
-On the cancer side, the most important thing the surgeon controls is getting it all out: an R0 resection. After that, the ATA risk group decides on radioiodine and how much we suppress TSH.
-
-[point to the banner] And one thing I found really interesting: surgeons who do more than about twenty-five thyroidectomies a year have clearly fewer complications. Volume matters."
+`SCRIPT (about 45 seconds)
+"Outcome also includes what the surgery itself can cause.
+Injury to the recurrent laryngeal nerve gives hoarseness. It's usually temporary, in three to eight percent, and permanent in under one to two. If both sides are injured, the airway is at risk. The external branch of the superior laryngeal nerve affects the high-pitched voice.
+Low calcium is the most common problem, in ten to thirty percent, but it's usually temporary. A neck hematoma is rare, about one percent, but it's an airway emergency, so the wound is opened straight away.
+For the cancer itself, a complete R0 resection matters most, and the ATA risk group guides radioiodine and TSH suppression.
+And finally, surgeons who do more than about twenty-five of these a year have fewer complications."
 
 BACKUP Q&A (not read aloud)
 Q: How do you manage a post-thyroidectomy haematoma with stridor?
@@ -590,16 +694,18 @@ divider(8);
 // =====================================================================
 {
   const s = content(8, "Case discussion: three nodules, three outcomes", "[16] Bethesda 2023; [10] ATA 2015; [15] ATA MTC 2015; [14] ATA ATC 2021",
-`SCRIPT (about 80 seconds)
-"Let me finish with three quick patients, just to bring it all together. They're illustrative cases.
-
-First, a thirty-four-year-old woman with a two-centimetre nodule. The ultrasound looks worrying, TI-RADS five, and the FNA comes back Bethesda six: papillary cancer. She's under fifty-five, so stage one and low risk. She has her operation with no routine radioiodine, and a year later her thyroglobulin is undetectable. Excellent response. That's the typical, happy thyroid cancer story.
-
-Second, a forty-two-year-old man: a nodule, a node in the neck, diarrhea, and his father had thyroid cancer and episodes of very high blood pressure. That should ring a bell: medullary cancer, probably MEN2A. And here's the trap. Before we touch the thyroid, we have to rule out a pheochromocytoma, or he can crash on the table. Then a total thyroidectomy with neck dissection, and we follow him with calcitonin and CEA.
-
-Third, a seventy-four-year-old lady with a hard neck mass that grew in three weeks. She's hoarse and short of breath. We think anaplastic, but we have to rule out lymphoma first, because lymphoma is very treatable. So we take a core biopsy and check BRAF. Airway first, an urgent team discussion, and honest, early palliative care.
-
-Three nodules, three completely different outcomes. Thank you, I'm happy to take any questions."
+`SCRIPT (about 75 seconds, interactive: 9 clicks)
+"Let's apply this with three quick cases. I'll show the scenario first; take a second to think before I reveal the answer.
+[click] Case one: a thirty-four-year-old woman with a two-centimetre nodule, TI-RADS five, Bethesda six. What is it, and what's her risk?
+[pause, then click] Papillary cancer. She's under fifty-five, so stage one, low risk.
+[click] She had surgery with no routine radioiodine, and a year later her Tg is undetectable: an excellent response.
+[click] Case two: a forty-two-year-old man with a nodule, a neck node, diarrhea, and a father with thyroid cancer and severe high blood pressure. What should we suspect?
+[pause, then click] Medullary cancer, probably MEN2A.
+[click] The key step is to rule out a pheochromocytoma before surgery. Then total thyroidectomy with neck dissection, and follow-up with calcitonin and CEA.
+[click] Case three: a seventy-four-year-old woman with a hard mass growing over three weeks, hoarse and breathless. What are we worried about?
+[pause, then click] Anaplastic cancer, but we must exclude lymphoma, so a core biopsy and BRAF testing.
+[click] Airway first, an urgent team discussion, and early palliative care.
+Three nodules, three very different outcomes. Thank you."
 
 BACKUP Q&A (not read aloud)
 Q: Case 1: why no routine radioiodine?
@@ -634,9 +740,10 @@ A: Resect only if complete resection is realistic; dabrafenib + trametinib if BR
     s.addText(c.t, { x: x + 0.25, y: 2.17, w: w - 0.5, h: 0.4, fontSize: 18, bold: true, color: NAVY, valign: "middle", margin: 0, isTextBox: true });
     const ix = x + 0.2, iw = w - 0.4;
     [[2.7, 1.3, WHITE, BORDER, "Scenario", TEAL, BODY, c.sc, false], [4.07, 1.2, TEAL_T, "BFDDD8", "Think", TEAL, BODY, c.th, false], [5.34, 1.32, NAVY, NAVY, "Decide", MINT, WHITE, c.de, true]].forEach(([y, h, f, l, lab, lc, tc, t, b]) => {
-      s.addShape(pres.shapes.RECTANGLE, { x: ix, y, w: iw, h, fill: { color: f }, line: { color: l, width: 0.75 } });
-      label(s, lab, ix + 0.13, y + 0.06, 2, lc, 9.5);
-      s.addText(t, { x: ix + 0.13, y: y + 0.32, w: iw - 0.26, h: h - 0.38, fontSize: 13.5, bold: b, color: tc, valign: "top", margin: 0, isTextBox: true });
+      const on = `step_${i}_${lab}`;
+      s.addShape(pres.shapes.RECTANGLE, { x: ix, y, w: iw, h, fill: { color: f }, line: { color: l, width: 0.75 }, objectName: on + "_box" });
+      s.addText(lab.toUpperCase(), { x: ix + 0.13, y: y + 0.06, w: 2, h: 0.26, fontSize: 9.5, bold: true, color: lc, charSpacing: 2.5, margin: 0, valign: "middle", isTextBox: true, objectName: on + "_lbl" });
+      s.addText(t, { x: ix + 0.13, y: y + 0.32, w: iw - 0.26, h: h - 0.38, fontSize: 13.5, bold: b, color: tc, valign: "top", margin: 0, isTextBox: true, objectName: on + "_txt" });
     });
   });
 }
@@ -668,8 +775,10 @@ A: Resect only if complete resection is realistic; dabrafenib + trametinib if BR
     "Williams NS, O'Connell PR, McCaskie AW, eds. Bailey & Love's Short Practice of Surgery. 28th ed. CRC Press; 2023.",
     "Adam MA, Thomas S, Youngwirth L, et al. Is there a minimum number of thyroidectomies a surgeon should perform to optimize patient outcomes? Ann Surg. 2017;265(2):402–407.",
     "Hay ID, Bergstralh EJ, Goellner JR, et al. Predicting outcome in papillary thyroid carcinoma (MACIS). Surgery. 1993;114(6):1050–1058.",
+    "American College of Radiology. ACR TI-RADS ultrasound reporting template. 2022.",
+    "Moorthy R, Balasubramanian SP, Farnell K, et al. Evaluation and management of thyroid nodules: joint consensus statement. Clin Endocrinol. 2026;104:682-692.",
   ];
-  const half = 10;
+  const half = 11;
   [refs.slice(0, half), refs.slice(half)].forEach((col, ci) => {
     const runs = [];
     col.forEach((r, i) => {
@@ -678,7 +787,7 @@ A: Resect only if complete resection is realistic; dabrafenib + trametinib if BR
     });
     s.addText(runs, { x: X0 + ci * 6.18, y: 1.55, w: 5.95, h: 5.4, fontSize: 10, valign: "top", margin: 0, isTextBox: true });
   });
-  s.addNotes("References 1–9 come from the teammates' sections; 10–19 support the prognosis and case sections. Where several sources state the same fact, one is cited.");
+  s.addNotes("References 1–9 and 20–21 come from the teammates' sections; 10–19 support the prognosis and case sections. Where several sources state the same fact, one is cited.");
 }
 
 // =====================================================================

@@ -2,7 +2,7 @@
 
 ## أولاً: شرح الفقرة بالعربي (افهمها، لا تحفظها)
 
-### شريحة 27: Prognosis (المتابعة، العوامل التنبؤية، النجاة)
+### شريحة 29: Prognosis (المتابعة، العوامل التنبؤية، النجاة)
 
 **1) المتابعة في DTC (papillary و follicular)**
 - **الفكرة الأساسية:** Thyroglobulin (Tg) بروتين ما يصنعه إلا نسيج الغدة الدرقية. بعد ما نشيل الغدة كاملة (وخاصة بعد اليود المشع)، المفروض يصير Tg تقريباً صفر. إذا بدأ يرتفع، معناه فيه نسيج غدة باقي، وغالباً يكون ورم راجع.
@@ -29,7 +29,7 @@
 
 **الرسالة اللي تختم فيها:** المريض نادراً يموت من سرطان الغدة، لكن المرض ممكن يرجع، وغالباً يرجع في عقد الرقبة. عشان كذا المتابعة تطول سنين.
 
-### شريحة 28: Surgical Outcomes & Post-op Morbidity
+### شريحة 30: Surgical Outcomes & Post-op Morbidity
 
 **1) الأعصاب**
 - **RLN (العصب الحنجري الراجع):** يحرّك الحبل الصوتي، فإصابته تسوي بحّة.
@@ -50,7 +50,7 @@
 - **ATA risk:** تصنيف الخطورة بعد العملية، وهو اللي يقرر إذا المريض يحتاج يود مشع، وقد إيش نثبّط TSH.
 - **الشريط السفلي:** دراسة Adam 2017 لقت إن الجرّاح اللي يسوي أكثر من حوالي 25 عملية غدة في السنة مضاعفاته أقل بشكل واضح.
 
-### شريحة 30: الحالات الثلاث (ليش كل قرار)
+### شريحة 32: الحالات الثلاث (ليش كل قرار)
 
 **1) امرأة عمرها 34 سنة، عقدة 2 سم، TI-RADS 5، و Bethesda VI = papillary**
 - عمرها أقل من 55، فهي Stage I ومنخفضة الخطورة.
@@ -80,58 +80,51 @@
   - ~1% (Hematoma)
   - >25 عملية في السنة
 - الجمل اللي بين أقواس مربعة [ ] تعليمات لك، يعني أشّر على الشريحة، ولا تنقرأ.
-- السكربت حوالي 700 كلمة، يعني تقريباً 4.5 دقيقة بسرعة كلام هادئة.
+- السكربت صار قصير، حوالي 3 دقائق.
+- **شريحة الحالات تفاعلية:** كل ضغطة (click) تطلع جزء. أول شي يطلع Scenario، اسأل الحضور، وبعدها اضغط عشان يطلع Think، وبعدها Decide. يعني 9 ضغطات لكل الحالات الثلاث، ومكتوب في السكربت وين تضغط بالضبط.
 
 ---
 
 ## ثانياً: السكربت (English, spoken style)
-### Slide 27: Prognosis
 
-"Okay, so the patient has had their treatment. Now the real question is: how are they going to do, and how do we keep an eye on them?
+### Slide 29: Prognosis
 
-For differentiated cancer, papillary and follicular, follow-up is actually quite logical. Once the thyroid is out, the only thing in the body that makes thyroglobulin is thyroid tissue. So if Tg starts climbing, something is still there. We always send it with the antibodies, because the antibodies can hide it and give us a falsely reassuring number. Add a neck ultrasound, and at around six to twelve months we put the patient into one of four groups. [point to the left column] Excellent response is what we want: recurrence only about one to four percent. Structural incomplete, where we can actually see disease, is the worst. The two in the middle basically mean: keep watching.
+"So, after treatment, how do these patients actually do?
+For papillary and follicular cancer, we follow two things: thyroglobulin with its antibodies, and a neck ultrasound. Once the gland is removed, Tg should be almost zero, so if it rises, something has been left behind.
+At around six to twelve months, we sort patients by their response. An excellent response means only about one to four percent recurrence; visible disease on imaging is the worst group. Medullary cancer is followed differently, with calcitonin and CEA.
+The strongest predictors are age, with fifty-five as the cut-off, distant spread, gross invasion, and incomplete removal.
+[point to the chart] Survival stays close to a hundred percent unless the cancer spreads far. Anaplastic is the exception, at about five months.
+So patients rarely die of it, but it can come back, and that's why follow-up is long."
 
-Medullary is different. It doesn't come from follicular cells, so Tg is useless; we follow calcitonin and CEA instead.
+### Slide 30: Surgical Outcomes & Post-op Morbidity
 
-What predicts outcome? If I had to pick one thing, it's age, with fifty-five as the AJCC cut-off. Then distant spread, gross invasion, aggressive histology, and whether we got it all out.
+"Outcome also includes what the surgery itself can cause.
+Injury to the recurrent laryngeal nerve gives hoarseness. It's usually temporary, in three to eight percent, and permanent in under one to two. If both sides are injured, the airway is at risk. The external branch of the superior laryngeal nerve affects the high-pitched voice.
+Low calcium is the most common problem, in ten to thirty percent, but it's usually temporary. A neck hematoma is rare, about one percent, but it's an airway emergency, so the wound is opened straight away.
+For the cancer itself, a complete R0 resection matters most, and the ATA risk group guides radioiodine and TSH suppression.
+And finally, surgeons who do more than about twenty-five of these a year have fewer complications."
 
-[point to the chart] And the good news: localized and regional disease sit at almost a hundred percent. It only really drops with distant spread. Anaplastic is the exception, about five months.
+### Slide 32: Case discussion (interactive, 9 clicks)
 
-So the take-home: patients rarely die of thyroid cancer, but it can come back, usually in the neck, and that's why we follow them for years."
+"Let's apply this with three quick cases. I'll show the scenario first; take a second to think before I reveal the answer.
+[click] Case one: a thirty-four-year-old woman with a two-centimetre nodule, TI-RADS five, Bethesda six. What is it, and what's her risk?
+[pause, then click] Papillary cancer. She's under fifty-five, so stage one, low risk.
+[click] She had surgery with no routine radioiodine, and a year later her Tg is undetectable: an excellent response.
+[click] Case two: a forty-two-year-old man with a nodule, a neck node, diarrhea, and a father with thyroid cancer and severe high blood pressure. What should we suspect?
+[pause, then click] Medullary cancer, probably MEN2A.
+[click] The key step is to rule out a pheochromocytoma before surgery. Then total thyroidectomy with neck dissection, and follow-up with calcitonin and CEA.
+[click] Case three: a seventy-four-year-old woman with a hard mass growing over three weeks, hoarse and breathless. What are we worried about?
+[pause, then click] Anaplastic cancer, but we must exclude lymphoma, so a core biopsy and BRAF testing.
+[click] Airway first, an urgent team discussion, and early palliative care.
+Three nodules, three very different outcomes. Thank you."
 
-### Slide 28: Surgical Outcomes & Post-op Morbidity
-
-"Since we're a surgery department, I want to show the other side of outcome: what the operation itself can cost the patient.
-
-There are two nerves we really worry about. The recurrent laryngeal nerve: if it's injured, the patient wakes up hoarse. Most of the time it's temporary, three to eight percent, and it recovers; permanent damage is under one to two percent. But if both sides are injured, it becomes an airway problem. The external branch of the superior laryngeal is less dramatic, but a teacher or a singer will tell you they've lost their high notes.
-
-Then calcium. The parathyroids are tiny and sit right behind the thyroid, so after a total thyroidectomy it's very common for calcium to drop for a few days, in up to a third of patients. Permanent problems are rare.
-
-And the one complication everyone has to remember: a neck hematoma. It's rare, about one percent, but it can close the airway, so you open the wound right there at the bedside. You don't wait for theatre.
-
-On the cancer side, the most important thing the surgeon controls is getting it all out: an R0 resection. After that, the ATA risk group decides on radioiodine and how much we suppress TSH.
-
-[point to the banner] And one thing I found really interesting: surgeons who do more than about twenty-five thyroidectomies a year have clearly fewer complications. Volume matters."
-
-### Slide 30: Case discussion
-
-"Let me finish with three quick patients, just to bring it all together. They're illustrative cases.
-
-First, a thirty-four-year-old woman with a two-centimetre nodule. The ultrasound looks worrying, TI-RADS five, and the FNA comes back Bethesda six: papillary cancer. She's under fifty-five, so stage one and low risk. She has her operation with no routine radioiodine, and a year later her thyroglobulin is undetectable. Excellent response. That's the typical, happy thyroid cancer story.
-
-Second, a forty-two-year-old man: a nodule, a node in the neck, diarrhea, and his father had thyroid cancer and episodes of very high blood pressure. That should ring a bell: medullary cancer, probably MEN2A. And here's the trap. Before we touch the thyroid, we have to rule out a pheochromocytoma, or he can crash on the table. Then a total thyroidectomy with neck dissection, and we follow him with calcitonin and CEA.
-
-Third, a seventy-four-year-old lady with a hard neck mass that grew in three weeks. She's hoarse and short of breath. We think anaplastic, but we have to rule out lymphoma first, because lymphoma is very treatable. So we take a core biopsy and check BRAF. Airway first, an urgent team discussion, and honest, early palliative care.
-
-Three nodules, three completely different outcomes. Thank you, I'm happy to take any questions."
-
-_Total: 702 words._
+_Total: 461 words (≈ 3 minutes)._
 
 ---
 
 ## ثالثاً: أسئلة الدكتور المتوقعة (Backup Q&A)
 
-### Slide 27: Prognosis
+### Slide 29: Prognosis
 
 **Q:** Thyroglobulin cut-offs for an excellent response?
 A: After total thyroidectomy and radioiodine: suppressed Tg < 0.2 ng/mL or stimulated Tg < 1 ng/mL, negative antibodies and imaging (ATA 2015). Biochemical incomplete: suppressed Tg ≥ 1 or stimulated ≥ 10, or rising antibodies.
@@ -154,7 +147,7 @@ A: Medullary 10-year: localized 96%, regional 76%, distant 40% (Roman 2006); cal
 **Q:** ATA 2025 de-escalation?
 A: Low-risk patients with an excellent response can stop ultrasound after 5–8 years and thyroglobulin after 10–15 years.
 
-### Slide 28: Surgical Outcomes & Post-op Morbidity
+### Slide 30: Surgical Outcomes & Post-op Morbidity
 
 **Q:** How do you manage a post-thyroidectomy haematoma with stridor?
 A: Open the wound at the bedside (skin and strap-muscle sutures) to decompress, then return to theatre for haemostasis; secure the airway.
@@ -171,7 +164,7 @@ A: Adam et al., Ann Surg 2017: complication risk fell with surgeon volume up to 
 **Q:** How do you reduce nerve injury?
 A: Routine visual identification of the RLN (landmarks: Berry's ligament, Zuckerkandl's tubercle), ligation of superior pole vessels close to the gland for the EBSLN, and intraoperative nerve monitoring as an adjunct; laryngoscopy before and after surgery.
 
-### Slide 30: Case discussion
+### Slide 32: Case discussion (interactive, 9 clicks)
 
 **Q:** Case 1: why no routine radioiodine?
 A: In ATA low-risk disease it does not improve survival or meaningfully reduce recurrence; ATA 2025 is even more selective.
